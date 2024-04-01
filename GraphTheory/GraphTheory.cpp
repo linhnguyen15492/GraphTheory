@@ -228,6 +228,11 @@ void danhSachKe()
 	}
 }
 
+
+// https://www.javatpoint.com/how-to-split-strings-in-cpp
+
+
+
 /// <summary>
 /// đọc file txt chứa danh sách kề của đồ thị
 /// </summary>
@@ -247,19 +252,26 @@ int readFile(string fileName) {
 	// Read and print the contents of the file
 	string line;
 
-	while (getline(inputFile, line))
-	{
-		cout << line << endl;
+	//while (getline(inputFile, line))
+	//{
+	//	cout << line << endl;
 
-		// ss is an object of stringstream that references the S string.  
-		stringstream ss(line);
-		string word;
+	//	// ss is an object of stringstream that references the S string.  
+	//	stringstream ss(line);
+	//	string word;
 
-		// Use while loop to check the getline() function condition.  
-		while (ss >> word)
-		{ // Extract word from the stream.
-			cout << word << endl;
-		}
+	//	// Use while loop to check the getline() function condition.  
+	//	while (ss >> word)
+	//	{ // Extract word from the stream.
+	//		cout << word << endl;
+	//	}
+
+	//}
+
+	getline(inputFile, line);
+	int n = stoi(line);
+	cout << "So dinh : " << line << endl;
+	for (int i = 0; i < n; i++) {
 
 	}
 
@@ -358,7 +370,7 @@ int main()
 {
 	std::cout << "Do an Ly thuyet do thi - HK2 - 2023-2024 \n";
 
-	sayHello();
+	//sayHello();
 
 	// Specify the file name
 	string fileName = "example.txt";
