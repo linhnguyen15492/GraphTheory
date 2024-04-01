@@ -130,6 +130,7 @@
     <ClCompile Include="GraphTheory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="algorithms.h" />
     <ClInclude Include="factorial.h" />
   </ItemGroup>
   <ItemGroup>
