@@ -11,7 +11,7 @@
 #include <queue>
 using namespace std;
 
-#define V 100
+#define V 10
 
 int n, m;
 int graph[100][100];
@@ -93,7 +93,6 @@ int connectedComponents()
 	}
 	return count;
 }
-
 
 // Function to find the characteristic
 // of the given graph
@@ -203,7 +202,6 @@ int checkConnected(int graph[][V], int n)
 	return 0;
 }
 
-
 void danhSachKe()
 {
 	cin >> n >> m;
@@ -228,10 +226,7 @@ void danhSachKe()
 	}
 }
 
-
 // https://www.javatpoint.com/how-to-split-strings-in-cpp
-
-
 
 /// <summary>
 /// đọc file txt chứa danh sách kề của đồ thị
@@ -310,7 +305,6 @@ int readFile(string fileName) {
 
 	return 0;
 }
-
 
 class GFG {
 public:
@@ -395,7 +389,7 @@ public:
 
 int main()
 {
-	std::cout << "Do an Ly thuyet do thi - HK2 - 2023-2024 \n";
+	std::cout << "Do an Ly thuyet do thi - HK2/2023-2024\n";
 
 	// Specify the file name
 	string fileName = "example.txt";
