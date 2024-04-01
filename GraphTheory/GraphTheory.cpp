@@ -14,11 +14,11 @@ using namespace std;
 #define V 100
 
 int n, m;
-int graph[10001][1001];
+int graph[100][100];
 
 // adj[i] : Lưu danh sách kề của đỉnh i
 std::vector<int> adjacencyList[1001];
-bool visited[1001];
+bool visited[100];
 
 /// @brief Duyệt đồ thị theo chiều sâu
 /// @param u
@@ -328,8 +328,7 @@ public:
 
 	// Function to return all the strongly connected
 	// component of a graph.
-	vector<vector<int> > findSCC(int n,
-		vector<vector<int> >& a)
+	vector<vector<int> > findSCC(int n, vector<vector<int>>& a)
 	{
 		// Stores all the strongly connected components.
 		vector<vector<int> > ans;
