@@ -271,8 +271,22 @@ int readFile(string fileName) {
 	getline(inputFile, line);
 	int n = stoi(line);
 	cout << "So dinh : " << line << endl;
-	for (int i = 0; i < n; i++) {
+	cout << "danh sach dinh ke" << endl;
 
+	int i = 0;
+	while (getline(inputFile, line))
+	{
+		cout << line << endl;
+
+		// ss is an object of stringstream that references the S string.  
+		stringstream ss(line);
+		string word;
+
+		// Use while loop to check the getline() function condition.  
+		while (ss >> word)
+		{ // Extract word from the stream.
+			cout << word << endl;
+		}
 	}
 
 	// Close the file
