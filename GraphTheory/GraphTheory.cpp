@@ -273,19 +273,35 @@ int readFile(string fileName) {
 	cout << "So dinh : " << line << endl;
 	cout << "danh sach dinh ke" << endl;
 
-	int i = 0;
 	while (getline(inputFile, line))
 	{
-		cout << line << endl;
+		//cout << line << endl;
 
 		// ss is an object of stringstream that references the S string.  
 		stringstream ss(line);
 		string word;
 
-		// Use while loop to check the getline() function condition.  
+		// Use while loop to check the getline() function condition.
+
+		int i = 0;
 		while (ss >> word)
 		{ // Extract word from the stream.
-			cout << word << endl;
+			if (i == 0)
+			{
+				cout << "So dinh ke: " << word << endl;
+			}
+			else
+			{
+				if (i % 2 == 0)
+				{
+					cout << "Trong so: " << word << endl;
+				}
+				else
+				{
+					cout << "Dinh ke: " << word << endl;
+				}
+			}
+			i++;
 		}
 	}
 
@@ -376,14 +392,10 @@ public:
 	}
 };
 
-// Driver Code Starts
-
 
 int main()
 {
 	std::cout << "Do an Ly thuyet do thi - HK2 - 2023-2024 \n";
-
-	//sayHello();
 
 	// Specify the file name
 	string fileName = "example.txt";
@@ -404,20 +416,20 @@ int main()
 	// Function Call
 	checkConnected(graph, n);
 
-	// Driver Code Starts
-	GFG obj;
-	//int V = 5;
-	vector<vector<int> > edges{
-		{ 1, 3 }, { 1, 4 }, { 2, 1 }, { 3, 2 }, { 4, 5 }
-	};
-	vector<vector<int> > ans = obj.findSCC(V, edges);
-	cout << "Strongly Connected Components are:\n";
-	for (auto x : ans) {
-		for (auto y : x) {
-			cout << y << " ";
-		}
-		cout << "\n";
-	}
+	//// Driver Code Starts
+	//GFG obj;
+	////int V = 5;
+	//vector<vector<int> > edges{
+	//	{ 1, 3 }, { 1, 4 }, { 2, 1 }, { 3, 2 }, { 4, 5 }
+	//};
+	//vector<vector<int> > ans = obj.findSCC(V, edges);
+	//cout << "Strongly Connected Components are:\n";
+	//for (auto x : ans) {
+	//	for (auto y : x) {
+	//		cout << y << " ";
+	//	}
+	//	cout << "\n";
+	//}
 
 	return 0;
 }
