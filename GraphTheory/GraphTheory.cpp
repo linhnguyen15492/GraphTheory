@@ -13,14 +13,14 @@ int unDirectedGraph[V][V];
 vector<int> directedAdjacencyList[V], r_directedAdjacencyList[V];
 vector<int> undirectedAdjacencyList[V];
 
-vector<string> yeuCau2 = { "yeuCau2_1.txt", "yeuCau2_2.txt","yeuCau2_3.txt", "yeuCau2_4.txt" };
+vector<string> yeuCau2_deBai = { "yeuCau2_1.txt", "yeuCau2_2.txt","yeuCau2_3.txt", "yeuCau2_4.txt" };
 
-// Driver Code
-int main()
+
+void yeuCau2()
 {
-	std::cout << "Do an Ly thuyet do thi - HK2/2023-2024\n";
-
 	int n; // số đỉnh
+
+	cout << "Yeu cau 2: Xac dinh thanh phan lien thong manh" << endl;
 
 	// Specify the file name
 	string example = "example.txt";
@@ -29,9 +29,13 @@ int main()
 	string yeuCau2_3 = "yeuCau2_3.txt";
 	string yeuCau2_4 = "yeuCau2_4.txt";
 
-	for (string v : yeuCau2)
+	for (string v : yeuCau2_deBai)
 	{
 		n = loadDirectedGraph(v, directedAdjacencyList, r_directedAdjacencyList);
+
+		int c = connectedComponents(directedAdjacencyList, n);
+		cout << "So thanh phan lien thong: " << c << endl;
+
 		stronglyConnectedComponents(directedAdjacencyList, r_directedAdjacencyList, n);
 
 		// clear adjacency list
@@ -41,7 +45,17 @@ int main()
 			r_directedAdjacencyList[i].clear();
 
 		}
+
+		cout << endl;
 	}
+}
+
+// Driver Code
+int main()
+{
+	std::cout << "Do an Ly thuyet do thi - HK2/2023-2024\n";
+
+	yeuCau2();
 
 	//n = loadDirectedGraph(yeuCau2_4, directedAdjacencyList, r_directedAdjacencyList);
 	//printAdjacencyList(directedAdjacencyList, n);

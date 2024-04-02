@@ -84,7 +84,6 @@ void stronglyConnectedComponents(vector<int> adjacencyList[], vector<int> r_adja
 			dfs(i, adjacencyList);
 		}
 	}
-	cout << endl;
 
 	// reset visited array
 	memset(visited, false, sizeof(visited));
@@ -107,7 +106,6 @@ void stronglyConnectedComponents(vector<int> adjacencyList[], vector<int> r_adja
 		}
 	}
 }
-
 
 
 /// <summary>
@@ -152,7 +150,6 @@ void bfs(int u, vector<int> adjacencyList[])
 		}
 	}
 }
-
 
 
 /// <summary>

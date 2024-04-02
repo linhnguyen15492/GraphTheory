@@ -139,6 +139,7 @@
     <Text Include="yeuCau2_2.txt" />
     <Text Include="yeuCau2_3.txt" />
     <Text Include="yeuCau2_4.txt" />
+    <Text Include="yeuCau3.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
