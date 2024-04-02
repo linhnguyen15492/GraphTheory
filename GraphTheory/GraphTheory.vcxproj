@@ -132,9 +132,12 @@
   <ItemGroup>
     <ClInclude Include="algorithms.h" />
     <ClInclude Include="factorial.h" />
+    <ClInclude Include="helper.h" />
+    <ClInclude Include="loadGraph.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="example.txt" />
+    <Text Include="yeuCau2_1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

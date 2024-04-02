@@ -1,310 +1,42 @@
 ﻿// GraphTheory.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <sstream>  
-#include <iostream>
+
 #include <stdio.h>
-#include <fstream>
-#include <string>
 #include "factorial.h"
-#include <vector>
-#include <queue>
+#include "loadGraph.h"
+#include "algorithms.h"
+#include "helper.h"
+
 using namespace std;
 
-#define V 10
+#define V 100
 
-int n, m;
-int graph[100][100];
 
-// adj[i] : Lưu danh sách kề của đỉnh i
-std::vector<int> adjacencyList[1001];
-bool visited[100];
+//void danhSachKe()
+//{
+//	cin >> n >> m;
+//	for (int i = 0; i < m; i++)
+//	{
+//		int x, y;
+//		cin >> x >> y;
+//		adjacencyList[x].push_back(y);
+//		adjacencyList[y].push_back(x); // Nếu là đồ thị có hướng thì bỏ dòng này
+//	}
+//
+//	memset(visited, false, sizeof(visited));
+//
+//	for (int i = 1; i <= n; i++)
+//	{
+//		cout << i << " : ";
+//		for (int x : adjacencyList[i])
+//		{
+//			cout << x << " ";
+//		}
+//		cout << endl;
+//	}
+//}
 
-/// @brief Duyệt đồ thị theo chiều sâu
-/// @param u
-void dfs(int u)
-{
-	// thăm đỉnh u
-	cout << u << " ";
-
-	// sau đó đánh dấu đỉnh u là đã được thăm
-	visited[u] = true;
-
-	// duyệt các đỉnh kề với đỉnh u
-	for (int v : adjacencyList[u])
-	{
-		if (!visited[v])
-		{
-			dfs(v);
-		}
-	}
-}
-
-/// @brief Duyệt đồ thị theo chiều rộng
-/// @param u
-void bfs(int u)
-{
-	// tạo hàng đợi q
-	queue<int> q;
-
-	// xuất phát từ đỉnh u
-	// thêm đỉnh u vào hàng đợi q
-	q.push(u);
-
-	// đánh dấu đỉnh u là đã được xét
-	visited[u] = true;
-
-	while (!q.empty())
-	{
-		// lấy đỉnh đầu tiên ra khỏi hàng đợi
-		// thực hiện thao tác với đỉnh đó
-		int s = q.front();
-		q.pop();
-		cout << s << " ";
-
-		// duyệt các đỉnh kề với đỉnh s
-		for (int v : adjacencyList[s])
-		{
-			// nếu đỉnh v chưa được xét
-			if (!visited[v])
-			{
-				// thêm đỉnh v vào hàng đợi
-				q.push(v);
-
-				// đánh dấu đỉnh v là đã được xét
-				visited[v] = true;
-			}
-		}
-	}
-}
-
-/// @brief Đếm số thành phần liên thông của đồ thị
-/// @return int
-int connectedComponents()
-{
-	int count = 0;
-	for (int i = 1; i <= n; i++)
-	{
-		if (!visited[i])
-		{
-			count++;
-			dfs(i);
-		}
-	}
-	return count;
-}
-
-// Function to find the characteristic
-// of the given graph
-int checkConnected(int graph[][V], int n)
-{
-
-	// Check whether the graph is
-	// strongly connected or not
-	bool strongly = true;
-
-	// Traverse the path matrix
-	for (int i = 0; i < n; i++) {
-
-		for (int j = 0; j < n; j++) {
-
-			// If all the elements are
-			// not equal then the graph
-			// is not strongly connected
-			if (graph[i][j] != graph[j][i]) {
-				strongly = false;
-				break;
-			}
-		}
-
-		// Break out of the loop if false
-		if (!strongly) {
-			break;
-		}
-	}
-	// If true then print strongly
-	// connected and return
-	if (strongly) {
-		cout << "Strongly Connected";
-		return 0;
-	}
-
-	// Check whether the graph is
-	// Unilaterally connected by
-	// checking Upper Triangle element
-	bool uppertri = true;
-
-	// Traverse the path matrix
-	for (int i = 0; i < n; i++) {
-
-		for (int j = 0; j < n; j++) {
-
-			// If uppertriangle elements
-			// are 0 then break out of the
-			// loop and check the elements
-			// of lowertriangle matrix
-			if (i > j && graph[i][j] == 0) {
-				uppertri = false;
-				break;
-			}
-		}
-
-		// Break out of the loop if false
-		if (!uppertri) {
-			break;
-		}
-	}
-
-	// If true then print unilaterally
-	// connected and return
-	if (uppertri) {
-		cout << "Unilaterally Connected";
-		return 0;
-	}
-
-	// Check lowertraingle elements
-	bool lowertri = true;
-
-	// Traverse the path matrix
-	for (int i = 0; i < n; i++) {
-
-		for (int j = 0; j < n; j++) {
-
-			// If lowertraingle elements
-			// are 0 then break cause
-			// 1's are expected
-			if (i < j && graph[i][j] == 0) {
-				lowertri = false;
-				break;
-			}
-		}
-
-		// Break out of the loop if false
-		if (!lowertri) {
-			break;
-		}
-	}
-
-	// If true then print unilaterally
-	// connected and return
-	if (lowertri) {
-		cout << "Unilaterally Connected";
-		return 0;
-	}
-
-	// If elements are in random order
-	// unsynchronized then print weakly
-	// connected and return
-	else {
-		cout << "Weakly Connected";
-	}
-
-	return 0;
-}
-
-void danhSachKe()
-{
-	cin >> n >> m;
-	for (int i = 0; i < m; i++)
-	{
-		int x, y;
-		cin >> x >> y;
-		adjacencyList[x].push_back(y);
-		adjacencyList[y].push_back(x); // Nếu là đồ thị có hướng thì bỏ dòng này
-	}
-
-	memset(visited, false, sizeof(visited));
-
-	for (int i = 1; i <= n; i++)
-	{
-		cout << i << " : ";
-		for (int x : adjacencyList[i])
-		{
-			cout << x << " ";
-		}
-		cout << endl;
-	}
-}
-
-// https://www.javatpoint.com/how-to-split-strings-in-cpp
-
-/// <summary>
-/// đọc file txt chứa danh sách kề của đồ thị
-/// </summary>
-/// <param name="fileName"></param>
-/// <returns></returns>
-int readFile(string fileName) {
-	// Open the file
-	ifstream inputFile(fileName);
-
-	// Check if the file is opened successfully
-	if (!inputFile.is_open())
-	{
-		cerr << "Error opening file: " << fileName << endl;
-		return 1; // Return an error code
-	}
-
-	// Read and print the contents of the file
-	string line;
-
-	//while (getline(inputFile, line))
-	//{
-	//	cout << line << endl;
-
-	//	// ss is an object of stringstream that references the S string.  
-	//	stringstream ss(line);
-	//	string word;
-
-	//	// Use while loop to check the getline() function condition.  
-	//	while (ss >> word)
-	//	{ // Extract word from the stream.
-	//		cout << word << endl;
-	//	}
-
-	//}
-
-	getline(inputFile, line);
-	int n = stoi(line);
-	cout << "So dinh : " << line << endl;
-	cout << "danh sach dinh ke" << endl;
-
-	while (getline(inputFile, line))
-	{
-		//cout << line << endl;
-
-		// ss is an object of stringstream that references the S string.  
-		stringstream ss(line);
-		string word;
-
-		// Use while loop to check the getline() function condition.
-
-		int i = 0;
-		while (ss >> word)
-		{ // Extract word from the stream.
-			if (i == 0)
-			{
-				cout << "So dinh ke: " << word << endl;
-			}
-			else
-			{
-				if (i % 2 == 0)
-				{
-					cout << "Trong so: " << word << endl;
-				}
-				else
-				{
-					cout << "Dinh ke: " << word << endl;
-				}
-			}
-			i++;
-		}
-	}
-
-	// Close the file
-	inputFile.close();
-
-	return 0;
-}
 
 class GFG {
 public:
@@ -387,28 +119,41 @@ public:
 };
 
 
+// Number of vertices and edges
+int graph[V][V];
+
+// adjacency list
+std::vector<int> adjacencyList[1001];
+bool visited[100];
+
+// Driver Code
 int main()
 {
 	std::cout << "Do an Ly thuyet do thi - HK2/2023-2024\n";
 
 	// Specify the file name
-	string fileName = "example.txt";
+	string fileName1 = "example.txt";
+	string fileName2 = "yeuCau2_1.txt";
 
-	readFile(fileName);
+	loadGraph(fileName2, adjacencyList);
+	loadGraphAdjMatrix(graph, adjacencyList);
+	printAdjacencyList(adjacencyList);
+	printAdjacencyMatrix(graph);
 
+	//checkConnected(graph, n);
 
 	// Number of nodes
-	int n = 3;
+	//int n = 3;
 
 	// Given Path Matrix
-	int graph[V][V] = {
-		{ 0, 1, 1 },
-		{ 0, 0, 1 },
-		{ 0, 0, 0 },
-	};
+	//int graph[V][V] = {
+	//	{ 0, 1, 1 },
+	//	{ 0, 0, 1 },
+	//	{ 0, 0, 0 },
+	//};
 
 	// Function Call
-	checkConnected(graph, n);
+	//checkConnected(graph, n);
 
 	//// Driver Code Starts
 	//GFG obj;

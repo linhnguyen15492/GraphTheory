@@ -1,0 +1,126 @@
+﻿using namespace std;
+#include <stdio.h>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <sstream>  
+
+#define V 100
+
+// số đỉnh và số cạnh
+int n, m;
+
+
+/// <summary>
+/// tạo đồ thị danh sách kề từ file txt
+/// </summary>
+/// <param name="fileName"></param>
+/// <param name="adj"></param>
+void loadGraph(string fileName, vector<int> adj[]) {
+	// Open the file
+	ifstream inputFile(fileName);
+
+	// Check if the file is opened successfully
+	if (!inputFile.is_open())
+	{
+		cerr << "Error opening file: " << fileName << endl;
+		return; // Return an error code
+	}
+
+	// Read and print the contents of the file
+	string line;
+
+	// đọc số đỉnh
+	getline(inputFile, line);
+	n = stoi(line);
+
+	int v = 0; // index cho từng đỉnh của vector adj
+	while (getline(inputFile, line))
+	{
+		// ss is an object of stringstream that references the S string.  
+		stringstream ss(line);
+		string word;
+
+		// Use while loop to check the getline() function condition.
+		// index cho từng phần tử của mỗi dòng
+		int i = 0;
+		while (ss >> word) // Extract word from the stream.
+		{
+			// phần tử đầu tiên là số đỉnh kề
+			if (i != 0)
+			{
+				// phần tử lẻ là đỉnh kề
+				if (i % 2 == 1)
+				{
+					//cout << "Dinh ke: " << word << endl;
+					int value = stoi(word);
+					adj[v].push_back(value);
+				}
+			}
+			// di chuyển đến phần tử tiếp theo
+			i++;
+		}
+		// di chuyển đến đỉnh tiếp theo
+		v++;
+	}
+
+	cout << "successfully" << endl;
+
+	// Close the file
+	inputFile.close();
+}
+
+
+/// <summary>
+/// load graph định dạng ma trận kề
+/// </summary>
+/// <param name="graph"></param>
+/// <param name="adj"></param>
+void loadGraphAdjMatrix(int graph[][V], vector<int> adj[]) {
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < adj[i].size(); j++)
+		{
+			graph[i][adj[i][j]] = 1;
+		}
+	}
+}
+
+
+/// <summary>
+/// in ra danh sách kề
+/// </summary>
+/// <param name="adj"></param>
+void printAdjacencyList(vector<int> adj[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int x : adj[i])
+		{
+			cout << x << " ";
+		}
+		cout << endl;
+	}
+}
+
+
+/// <summary>
+/// in ra ma trận kề
+/// </summary>
+/// <param name="graph"></param>
+void printAdjacencyMatrix(int graph[][V])
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cout << graph[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+
