@@ -191,10 +191,10 @@ void loadUndirectedGraph(string fileName, vector<int> adj[]) {
 
 
 /// <summary>
-/// load graph định dạng ma trận kề, đồ thị có hướng
+/// tạo ma trận kề từ file txt, đồ thị có hướng
 /// </summary>
+/// <param name="filename"></param>
 /// <param name="graph"></param>
-/// <param name="adj"></param>
 void loadGraphAdjMatrix(string filename, int graph[][V])
 {
 	vector<int> adj[100]; // danh sách kề

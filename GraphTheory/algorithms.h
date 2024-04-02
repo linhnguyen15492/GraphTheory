@@ -79,7 +79,12 @@ void reverseDfs(int u, vector<int> r_adjacencyList[], bool visited[])
 	}
 }
 
-
+/// <summary>
+/// thuật toán Kosaraju để tìm các thành phần liên thông mạnh
+/// </summary>
+/// <param name="adjacencyList"></param>
+/// <param name="r_adjacencyList"></param>
+/// <param name="visited"></param>
 void stronglyConnectedComponents(vector<int> adjacencyList[], vector<int> r_adjacencyList[], bool visited[])
 {
 	stack<int> st;
