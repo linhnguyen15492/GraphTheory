@@ -6,8 +6,6 @@ using namespace std;
 
 #define V 100
 
-stack<int> st;
-
 /// @brief Duyệt đồ thị theo chiều sâu
 /// @param u
 void dfs(int u, vector<int> adjacencyList[], bool visited[])
@@ -27,6 +25,78 @@ void dfs(int u, vector<int> adjacencyList[], bool visited[])
 		}
 	}
 }
+
+
+/// <summary>
+/// thuật toán dfs để tìm kiếm thành phần liên thông mạnh, theo giải thuật Kosaraju
+/// </summary>
+/// <param name="u"></param>
+/// <param name="adjacencyList"></param>
+/// <param name="visited"></param>
+/// <param name="st"></param>
+void dfs(int u, vector<int> adjacencyList[], bool visited[], stack<int> st)
+{
+	// thăm đỉnh u
+	//cout << "tham dinh " << u << endl;
+
+	// sau đó đánh dấu đỉnh u là đã được thăm
+	visited[u] = true;
+
+	// duyệt các đỉnh kề với đỉnh u
+	for (int v : adjacencyList[u])
+	{
+		if (!visited[v])
+		{
+			dfs(v, adjacencyList, visited);
+		}
+	}
+
+	// đưa đỉnh u vào stack
+	st.push(u);
+}
+
+/// <summary>
+/// in ra các đỉnh thuộc thành phần liên thông mạnh
+/// </summary>
+/// <param name="u"></param>
+/// <param name="r_adjacencyList"></param>
+/// <param name="visited"></param>
+void reverseDfs(int u, vector<int> r_adjacencyList[], bool visited[])
+{
+	// thăm đỉnh u
+	cout << "tham dinh " << u << endl;
+
+	// sau đó đánh dấu đỉnh u là đã được thăm
+	visited[u] = true;
+
+	// duyệt các đỉnh kề với đỉnh u
+	for (int v : r_adjacencyList[u])
+	{
+		if (!visited[v])
+		{
+			reverseDfs(v, r_adjacencyList, visited);
+		}
+	}
+}
+
+
+void stronglyConnectedComponents(vector<int> adjacencyList[], vector<int> r_adjacencyList[], bool visited[])
+{
+	stack<int> st;
+	memset(visited, false, sizeof(visited));
+
+	// duyệt đồ thị theo chiều sâu
+	for (int i = 0; i < V; i++)
+	{
+		if (!visited[i])
+		{
+			dfs(i, adjacencyList, visited, st);
+		}
+	}
+	cout << endl;
+
+}
+
 
 
 /// @brief Duyệt đồ thị theo chiều rộng
