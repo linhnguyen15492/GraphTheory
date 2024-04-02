@@ -59,6 +59,14 @@ void yeuCau2()
 	}
 }
 
+void yeuCau3()
+{
+	string filename = "yeuCau3.txt";
+	loadEdges(filename);
+
+	kruskal();
+}
+
 
 // Driver Code
 int main()
@@ -73,8 +81,7 @@ int main()
 
 	//stronglyConnectedComponents(directedAdjacencyList, r_directedAdjacencyList, n);
 
-	loadEdges("yeuCau3.txt");
-	print(edges);
+	yeuCau3();
 
 	cout << "Ket thuc chuong trinh!" << endl;
 

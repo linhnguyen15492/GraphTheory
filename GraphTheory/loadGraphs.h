@@ -17,7 +17,6 @@ struct edge
 	int weight;
 };
 
-
 // graph adjacency matrix
 int directedGraph[V][V];
 int unDirectedGraph[V][V];
@@ -32,7 +31,6 @@ vector<edge> edges;
 
 int n, m; // số đỉnh, số cạnh
 int parent[V], sz[V]; // parent array
-
 
 /// <summary>
 /// tạo danh sách kề từ file txt, đồ thị có hướng
@@ -323,42 +321,10 @@ void print(int graph[][V], int n)
 	}
 }
 
-
-void makeSet() {
-	for (int i = 0; i < n; i++)
-	{
-		parent[i] = i;
-		sz[i] = 1;
-	}
-}
-
-int find(int v) {
-	if (v == parent[v])
-		return v;
-
-	return parent[v] = find(parent[v]);
-}
-
-bool Union(int a, int b)
-{
-	a = find(a);
-	b = find(b);
-
-	if (a == b)
-	{
-		return false; // không thể gộp a, b vào với nhau
-	}
-
-	if (sz[a] < sz[b])
-		swap(a, b);
-
-	parent[b] = a;
-	sz[a] += sz[b];
-
-	return true;
-}
-
-
+/// <summary>
+/// tạo danh sách các cạnh có trọng số từ file txt
+/// </summary>
+/// <param name="fileName"></param>
 void loadEdges(string fileName)
 {
 	// Open the file
@@ -395,7 +361,6 @@ void loadEdges(string fileName)
 			// phần tử đầu tiên là số đỉnh kề
 			if (i == 0)
 			{
-				cout << "So dinh ke: " << word << endl;
 			}
 			else
 			{
@@ -403,18 +368,17 @@ void loadEdges(string fileName)
 				if (i % 2 == 1)
 				{
 					dest = stoi(word);
-					cout << "Dinh ke: " << dest << endl;
 				}
-				else
+				if (i % 2 == 0)
 				{
 					// phần tử chẵn là trọng số
 					weight = stoi(word);
-					cout << "Trong so: " << weight << endl;
 
 					if (v < dest)
 					{
 						e = { v, dest, weight };
 						edges.push_back(e);
+						m++;
 					}
 				}
 			}

@@ -2,6 +2,7 @@
 #include <vector>
 #include <queue>
 #include <stack>
+#include <print>
 using namespace std;
 
 #define V 100
@@ -256,6 +257,41 @@ public:
 	}
 };
 
+
+void makeSet() {
+	for (int i = 0; i < n; i++)
+	{
+		parent[i] = i;
+		sz[i] = 1;
+	}
+}
+
+int find(int v) {
+	if (v == parent[v])
+		return v;
+
+	return parent[v] = find(parent[v]);
+}
+
+bool merge(int a, int b)
+{
+	a = find(a);
+	b = find(b);
+
+	if (a == b)
+	{
+		return false; // không thể gộp a, b vào với nhau
+	}
+
+	if (sz[a] < sz[b])
+		swap(a, b);
+
+	parent[b] = a;
+	sz[a] += sz[b];
+
+	return true;
+}
+
 bool compare(edge a, edge b)
 {
 	return a.weight > b.weight;
@@ -263,7 +299,49 @@ bool compare(edge a, edge b)
 
 void kruskal()
 {
+	makeSet();
 
+	// tạo cây khung cực đại rỗng
+	vector<edge> mst;
+	int d = 0;
+
+	// sắp xếp các cạnh theo thứ tự giảm dần
+	sort(edges.begin(), edges.end(), compare);
+
+	cout << "So canh: " << m << endl;
+	cout << "smt size: " << mst.size() << endl;
+
+	// lặp
+	for (int i = 0; i < edges.size(); i++)
+	{
+		if (mst.size() == m - 1)
+		{
+			break;
+		}
+
+		edge e = edges[i]; // lấy cạnh có trọng số lớn nhất
+
+		if (merge(e.src, e.dest))
+		{
+			cout << "merge: " << e.src << " " << e.dest << " " << e.weight << endl;
+			mst.push_back(e);
+			d += e.weight;
+		}
+		else {
+			cout << "khong merge: " << e.src << " " << e.dest << " " << e.weight << endl;
+		}
+	}
+
+	cout << "Giai thuat Kruskal" << endl;
+	cout << "Tap canh cua cay khung: " << endl;
+
+	for (edge e : mst)
+	{
+		cout << e.src << " - " << e.dest << ": " << e.weight << endl;
+	}
+
+	// trả về kết quả
+	cout << "Trong so cua cay khung: " << d << endl;
 }
 
 
