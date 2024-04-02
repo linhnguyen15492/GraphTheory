@@ -1,44 +1,19 @@
-﻿#pragma once
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 #include <queue>
+#include <stack>
 using namespace std;
 
+#define V 100
 
-//int n, m;
-//int graph[10001][1001];
-
-// adj[i] : Lưu danh sách kề của đỉnh i
-//std::vector<int> adjacencyList[1001];
-//bool visited[1001];
+stack<int> st;
 
 /// @brief Duyệt đồ thị theo chiều sâu
 /// @param u
-//void dfs(int u)
-//{
-//	// thăm đỉnh u
-//	cout << u << " ";
-//
-//	// sau đó đánh dấu đỉnh u là đã được thăm
-//	visited[u] = true;
-//
-//	// duyệt các đỉnh kề với đỉnh u
-//	for (int v : adjacencyList[u])
-//	{
-//		if (!visited[v])
-//		{
-//			dfs(v);
-//		}
-//	}
-//}
-
-
-/// @brief Duyệt đồ thị theo chiều sâu
-/// @param u
-void dfs(int u, bool visited[], vector<int> adjacencyList[])
+void dfs(int u, vector<int> adjacencyList[], bool visited[])
 {
 	// thăm đỉnh u
-	cout << u << " ";
+	//cout << "tham dinh " << u << endl;
 
 	// sau đó đánh dấu đỉnh u là đã được thăm
 	visited[u] = true;
@@ -48,66 +23,74 @@ void dfs(int u, bool visited[], vector<int> adjacencyList[])
 	{
 		if (!visited[v])
 		{
-			dfs(v, visited, adjacencyList);
+			dfs(v, adjacencyList, visited);
 		}
 	}
 }
 
+
 /// @brief Duyệt đồ thị theo chiều rộng
 /// @param u
-//void bfs(int u)
-//{
-//	// tạo hàng đợi q
-//	queue<int> q;
-//
-//	// xuất phát từ đỉnh u
-//	// thêm đỉnh u vào hàng đợi q
-//	q.push(u);
-//
-//	// đánh dấu đỉnh u là đã được xét
-//	visited[u] = true;
-//
-//	while (!q.empty())
-//	{
-//		// lấy đỉnh đầu tiên ra khỏi hàng đợi
-//		// thực hiện thao tác với đỉnh đó
-//		int s = q.front();
-//		q.pop();
-//		cout << s << " ";
-//
-//		// duyệt các đỉnh kề với đỉnh s
-//		for (int v : adjacencyList[s])
-//		{
-//			// nếu đỉnh v chưa được xét
-//			if (!visited[v])
-//			{
-//				// thêm đỉnh v vào hàng đợi
-//				q.push(v);
-//
-//				// đánh dấu đỉnh v là đã được xét
-//				visited[v] = true;
-//			}
-//		}
-//	}
-//}
+void bfs(int u, vector<int> adjacencyList[], bool visited[])
+{
+	// tạo hàng đợi q
+	queue<int> q;
+
+	// xuất phát từ đỉnh u
+	// thêm đỉnh u vào hàng đợi q
+	q.push(u);
+
+	// đánh dấu đỉnh u là đã được xét
+	visited[u] = true;
+
+	while (!q.empty())
+	{
+		// lấy đỉnh đầu tiên ra khỏi hàng đợi
+		// thực hiện thao tác với đỉnh đó
+		int s = q.front();
+		q.pop();
+		cout << s << " ";
+
+		// duyệt các đỉnh kề với đỉnh s
+		for (int v : adjacencyList[s])
+		{
+			// nếu đỉnh v chưa được xét
+			if (!visited[v])
+			{
+				// thêm đỉnh v vào hàng đợi
+				q.push(v);
+
+				// đánh dấu đỉnh v là đã được xét
+				visited[v] = true;
+			}
+		}
+	}
+}
 
 
 
-/// @brief Đếm số thành phần liên thông của đồ thị
-/// @return int
-//int connectedComponents()
-//{
-//	int count = 0;
-//	for (int i = 1; i <= n; i++)
-//	{
-//		if (!visited[i])
-//		{
-//			count++;
-//			dfs(i);
-//		}
-//	}
-//	return count;
-//}
+/// <summary>
+/// đếm số thành phần liên thông của đồ thị, áp dụng trên đồ thị vô hướng để xác định đồ thị có liên thông hay không
+/// </summary>
+/// <param name="adj"></param>
+/// <returns></returns>
+int connectedComponents(vector<int> adj[])
+{
+	bool visited[V];
+	memset(visited, false, sizeof(visited));
+
+	int count = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (!visited[i])
+		{
+			count++;
+			dfs(i, adj, visited);
+		}
+	}
+
+	return count;
+}
 
 
 // Function to find the characteristic
@@ -216,3 +199,110 @@ void dfs(int u, bool visited[], vector<int> adjacencyList[])
 //
 //	return 0;
 //}
+
+
+//void traverse(int u, bool visited[]) {
+//	visited[u] = true; //mark v as visited
+//	for (int v = 0; v < n; v++) {
+//		if (graph[u][v]) {
+//			if (!visited[v])
+//				traverse(v, visited);
+//		}
+//	}
+//}
+//bool isConnected() {
+//	bool* vis = new bool[n];
+//	//for all vertex u as start point, check whether all nodes are visible or not
+//	for (int u; u < n; u++) {
+//		for (int i = 0; i < n; i++)
+//			vis[i] = false; //initialize as no node is visited
+//		traverse(u, vis);
+//		for (int i = 0; i < n; i++) {
+//			if (!vis[i]) //if there is a node, not visited by traversal, graph is not connected
+//				return false;
+//		}
+//	}
+//	return true;
+//}
+
+
+
+class GFG {
+public:
+	// dfs Function to reach destination
+	bool dfs(int curr, int des, vector<vector<int> >& adj,
+		vector<int>& vis)
+	{
+
+		// If curr node is destination return true
+		if (curr == des) {
+			return true;
+		}
+		vis[curr] = 1;
+		for (auto x : adj[curr]) {
+			if (!vis[x]) {
+				if (dfs(x, des, adj, vis)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	// To tell whether there is path from source to
+	// destination
+	bool isPath(int src, int des, vector<vector<int> >& adj)
+	{
+		vector<int> vis(adj.size() + 1, 0);
+		return dfs(src, des, adj, vis);
+	}
+
+	// Function to return all the strongly connected
+	// component of a graph.
+	vector<vector<int> > findSCC(int n, vector<vector<int>>& a)
+	{
+		// Stores all the strongly connected components.
+		vector<vector<int> > ans;
+
+		// Stores whether a vertex is a part of any Strongly
+		// Connected Component
+		vector<int> is_scc(n + 1, 0);
+
+		vector<vector<int> > adj(n + 1);
+
+		for (int i = 0; i < a.size(); i++) {
+			adj[a[i][0]].push_back(a[i][1]);
+		}
+
+		// Traversing all the vertices
+		for (int i = 1; i <= n; i++) {
+
+			if (!is_scc[i]) {
+
+				// If a vertex i is not a part of any SCC
+				// insert it into a new SCC list and check
+				// for other vertices whether they can be
+				// thr part of thidl ist.
+				vector<int> scc;
+				scc.push_back(i);
+
+				for (int j = i + 1; j <= n; j++) {
+
+					// If there is a path from vertex i to
+					// vertex j and vice versa put vertex j
+					// into the current SCC list.
+					if (!is_scc[j] && isPath(i, j, adj)
+						&& isPath(j, i, adj)) {
+						is_scc[j] = 1;
+						scc.push_back(j);
+					}
+				}
+
+				// Insert the SCC containing vertex i into
+				// the final list.
+				ans.push_back(scc);
+			}
+		}
+		return ans;
+	}
+};

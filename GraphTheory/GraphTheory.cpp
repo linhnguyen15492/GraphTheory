@@ -1,144 +1,67 @@
-﻿// GraphTheory.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-
-#include <stdio.h>
-#include "factorial.h"
+﻿#include <stdio.h>
 #include "loadGraph.h"
 #include "algorithms.h"
-#include "helper.h"
-
 using namespace std;
 
 #define V 100
 
+// graph adjacency matrix
+int directedGraph[V][V];
+int unDirectedGraph[V][V];
 
-//void danhSachKe()
-//{
-//	cin >> n >> m;
-//	for (int i = 0; i < m; i++)
-//	{
-//		int x, y;
-//		cin >> x >> y;
-//		adjacencyList[x].push_back(y);
-//		adjacencyList[y].push_back(x); // Nếu là đồ thị có hướng thì bỏ dòng này
-//	}
-//
-//	memset(visited, false, sizeof(visited));
-//
-//	for (int i = 1; i <= n; i++)
-//	{
-//		cout << i << " : ";
-//		for (int x : adjacencyList[i])
-//		{
-//			cout << x << " ";
-//		}
-//		cout << endl;
-//	}
-//}
+// graph adjacency list
+vector<int> directedAdjacencyList[V], r_directedAdjacencyList[V];
+vector<int> undirectedAdjacencyList[V];
+
+// visited array
+bool visited[V];
 
 
-class GFG {
-public:
-	// dfs Function to reach destination
-	bool dfs(int curr, int des, vector<vector<int> >& adj,
-		vector<int>& vis)
-	{
-
-		// If curr node is destination return true
-		if (curr == des) {
-			return true;
-		}
-		vis[curr] = 1;
-		for (auto x : adj[curr]) {
-			if (!vis[x]) {
-				if (dfs(x, des, adj, vis)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	// To tell whether there is path from source to
-	// destination
-	bool isPath(int src, int des, vector<vector<int> >& adj)
-	{
-		vector<int> vis(adj.size() + 1, 0);
-		return dfs(src, des, adj, vis);
-	}
-
-	// Function to return all the strongly connected
-	// component of a graph.
-	vector<vector<int> > findSCC(int n, vector<vector<int>>& a)
-	{
-		// Stores all the strongly connected components.
-		vector<vector<int> > ans;
-
-		// Stores whether a vertex is a part of any Strongly
-		// Connected Component
-		vector<int> is_scc(n + 1, 0);
-
-		vector<vector<int> > adj(n + 1);
-
-		for (int i = 0; i < a.size(); i++) {
-			adj[a[i][0]].push_back(a[i][1]);
-		}
-
-		// Traversing all the vertices
-		for (int i = 1; i <= n; i++) {
-
-			if (!is_scc[i]) {
-
-				// If a vertex i is not a part of any SCC
-				// insert it into a new SCC list and check
-				// for other vertices whether they can be
-				// thr part of thidl ist.
-				vector<int> scc;
-				scc.push_back(i);
-
-				for (int j = i + 1; j <= n; j++) {
-
-					// If there is a path from vertex i to
-					// vertex j and vice versa put vertex j
-					// into the current SCC list.
-					if (!is_scc[j] && isPath(i, j, adj)
-						&& isPath(j, i, adj)) {
-						is_scc[j] = 1;
-						scc.push_back(j);
-					}
-				}
-
-				// Insert the SCC containing vertex i into
-				// the final list.
-				ans.push_back(scc);
-			}
-		}
-		return ans;
-	}
-};
-
-
-// Number of vertices and edges
-int graph[V][V];
-
-// adjacency list
-std::vector<int> adjacencyList[1001];
-bool visited[100];
+vector<string> yeuCau2 = { "yeuCau2_1.txt", "yeuCau2_2.txt","yeuCau2_3.txt", "yeuCau2_4.txt" };
 
 // Driver Code
 int main()
 {
 	std::cout << "Do an Ly thuyet do thi - HK2/2023-2024\n";
 
-	// Specify the file name
-	string fileName1 = "example.txt";
-	string fileName2 = "yeuCau2_1.txt";
+	memset(visited, false, sizeof(visited));
 
-	loadGraph(fileName2, adjacencyList);
-	loadGraphAdjMatrix(graph, adjacencyList);
-	printAdjacencyList(adjacencyList);
-	printAdjacencyMatrix(graph);
+	// Specify the file name
+	string example = "example.txt";
+	string yeuCau2_1 = "yeuCau2_1.txt";
+	string yeuCau2_2 = "yeuCau2_2.txt";
+	string yeuCau2_3 = "yeuCau2_3.txt";
+	string yeuCau2_4 = "yeuCau2_4.txt";
+
+	//for (string v : yeuCau2) {
+	//	loadDirectedGraph(v, directedAdjacencyList);
+	//	//loadGraphAdjMatrix(v, graph);
+	//	printAdjacencyList(directedAdjacencyList);
+	//	//printAdjacencyMatrix(graph);
+
+	//	int n = connectedComponents(directedAdjacencyList);
+	//	cout << "so thanh phan lien thong: " << n << endl;
+
+	//	// clear adjacency list
+	//	for (int i = 0; i < V; i++) {
+	//		directedAdjacencyList[i].clear();
+	//	}
+	//}
+
+	loadDirectedGraph(yeuCau2_2, directedAdjacencyList, r_directedAdjacencyList);
+	printAdjacencyList(directedAdjacencyList);
+	printAdjacencyList(r_directedAdjacencyList);
+
+	//loadUndirectedGraph(yeuCau2_3, undirectedAdjacencyList);
+	//loadGraphAdjMatrix(yeuCau2_3, graph);
+	//printAdjacencyMatrix(graph);
+	//printAdjacencyList(undirectedAdjacencyList);
+
+	//int n = connectedComponents(directedAdjacencyList);
+	//cout << "so thanh phan lien thong: " << n << endl;
+
+	//int m = connectedComponents(undirectedAdjacencyList);
+	//cout << "so thanh phan lien thong: " << m << endl;
 
 	//checkConnected(graph, n);
 
@@ -169,6 +92,9 @@ int main()
 	//	}
 	//	cout << "\n";
 	//}
+
+
+	cout << "Ket thuc chuong trinh!" << endl;
 
 	return 0;
 }

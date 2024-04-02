@@ -20,16 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="factorial.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="algorithms.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="loadGraph.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="helper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,6 +32,15 @@
       <Filter>Source Files</Filter>
     </Text>
     <Text Include="yeuCau2_1.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="yeuCau2_2.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="yeuCau2_4.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="yeuCau2_3.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>
