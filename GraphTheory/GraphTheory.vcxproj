@@ -131,7 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algorithms.h" />
-    <ClInclude Include="loadGraph.h" />
+    <ClInclude Include="loadGraphs.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="example.txt" />

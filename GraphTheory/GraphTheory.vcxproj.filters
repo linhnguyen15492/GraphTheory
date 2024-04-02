@@ -23,7 +23,7 @@
     <ClInclude Include="algorithms.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="loadGraph.h">
+    <ClInclude Include="loadGraphs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

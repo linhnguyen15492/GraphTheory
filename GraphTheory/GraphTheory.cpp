@@ -1,5 +1,5 @@
 ﻿#include <stdio.h>
-#include "loadGraph.h"
+#include "loadGraphs.h"
 #include "algorithms.h"
 using namespace std;
 
