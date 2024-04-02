@@ -6,25 +6,10 @@ using namespace std;
 
 #define V 100
 
-/// @brief Duyệt đồ thị theo chiều sâu
-/// @param u
-void dfs(int u, vector<int> adjacencyList[], bool visited[])
-{
-	// thăm đỉnh u
-	//cout << "tham dinh " << u << endl;
+stack<int> st;
 
-	// sau đó đánh dấu đỉnh u là đã được thăm
-	visited[u] = true;
-
-	// duyệt các đỉnh kề với đỉnh u
-	for (int v : adjacencyList[u])
-	{
-		if (!visited[v])
-		{
-			dfs(v, adjacencyList, visited);
-		}
-	}
-}
+// visited array
+bool visited[V];
 
 
 /// <summary>
@@ -32,9 +17,7 @@ void dfs(int u, vector<int> adjacencyList[], bool visited[])
 /// </summary>
 /// <param name="u"></param>
 /// <param name="adjacencyList"></param>
-/// <param name="visited"></param>
-/// <param name="st"></param>
-void dfs(int u, vector<int> adjacencyList[], bool visited[], stack<int> st)
+void dfs(int u, vector<int> adjacencyList[])
 {
 	// thăm đỉnh u
 	//cout << "tham dinh " << u << endl;
@@ -45,26 +28,28 @@ void dfs(int u, vector<int> adjacencyList[], bool visited[], stack<int> st)
 	// duyệt các đỉnh kề với đỉnh u
 	for (int v : adjacencyList[u])
 	{
+		//cout << "dinh ke: " << v << endl;
 		if (!visited[v])
 		{
-			dfs(v, adjacencyList, visited);
+			dfs(v, adjacencyList);
 		}
 	}
 
+	//cout << "da duyet xong dinh " << u << endl;
 	// đưa đỉnh u vào stack
 	st.push(u);
 }
+
 
 /// <summary>
 /// in ra các đỉnh thuộc thành phần liên thông mạnh
 /// </summary>
 /// <param name="u"></param>
 /// <param name="r_adjacencyList"></param>
-/// <param name="visited"></param>
-void reverseDfs(int u, vector<int> r_adjacencyList[], bool visited[])
+void reverseDfs(int u, vector<int> r_adjacencyList[])
 {
 	// thăm đỉnh u
-	cout << "tham dinh " << u << endl;
+	cout << u << " ";
 
 	// sau đó đánh dấu đỉnh u là đã được thăm
 	visited[u] = true;
@@ -74,40 +59,66 @@ void reverseDfs(int u, vector<int> r_adjacencyList[], bool visited[])
 	{
 		if (!visited[v])
 		{
-			reverseDfs(v, r_adjacencyList, visited);
+			reverseDfs(v, r_adjacencyList);
 		}
 	}
 }
 
 /// <summary>
-/// thuật toán Kosaraju để tìm các thành phần liên thông mạnh
+/// thuật toán Kosaraju để tìm thành phần liên thông mạnh
 /// </summary>
 /// <param name="adjacencyList"></param>
 /// <param name="r_adjacencyList"></param>
-/// <param name="visited"></param>
-void stronglyConnectedComponents(vector<int> adjacencyList[], vector<int> r_adjacencyList[], bool visited[])
+/// <param name="n"></param>
+void stronglyConnectedComponents(vector<int> adjacencyList[], vector<int> r_adjacencyList[], int n)
 {
-	stack<int> st;
+	//stack<int> st;
 	memset(visited, false, sizeof(visited));
 
-	// duyệt đồ thị theo chiều sâu
-	for (int i = 0; i < V; i++)
+	// B1: gọi dfs trên đồ thị ban đầu
+	//cout << "goi dfs tren do thi ban dau" << endl;
+	for (int i = 0; i < n; i++)
 	{
 		if (!visited[i])
 		{
-			dfs(i, adjacencyList, visited, st);
+			dfs(i, adjacencyList);
 		}
 	}
 	cout << endl;
 
+	// reset visited array
+	memset(visited, false, sizeof(visited));
+
+	//cout << "goi dfs tren do thi dao" << endl;
+	// B2: gọi dfs trên đồ thị đảo
+	int j = 1;
+	while (!st.empty())
+	{
+		int u = st.top();
+		st.pop();
+
+		if (!visited[u])
+		{
+			cout << "Thanh phan lien thong manh " << j << ": ";
+			reverseDfs(u, r_adjacencyList);
+			cout << endl;
+
+			j++;
+		}
+	}
 }
 
 
 
-/// @brief Duyệt đồ thị theo chiều rộng
-/// @param u
-void bfs(int u, vector<int> adjacencyList[], bool visited[])
+/// <summary>
+/// thuật toán bfs để duyệt đồ thị
+/// </summary>
+/// <param name="u"></param>
+/// <param name="adjacencyList"></param>
+void bfs(int u, vector<int> adjacencyList[])
 {
+	memset(visited, false, sizeof(visited));
+
 	// tạo hàng đợi q
 	queue<int> q;
 
@@ -149,9 +160,8 @@ void bfs(int u, vector<int> adjacencyList[], bool visited[])
 /// </summary>
 /// <param name="adj"></param>
 /// <returns></returns>
-int connectedComponents(vector<int> adj[])
+int connectedComponents(vector<int> adj[], int n)
 {
-	bool visited[V];
 	memset(visited, false, sizeof(visited));
 
 	int count = 0;
@@ -160,145 +170,12 @@ int connectedComponents(vector<int> adj[])
 		if (!visited[i])
 		{
 			count++;
-			dfs(i, adj, visited);
+			dfs(i, adj);
 		}
 	}
 
 	return count;
 }
-
-
-// Function to find the characteristic
-// of the given graph
-//int checkConnected(int graph[][V], int n)
-//{
-//	// Check whether the graph is
-//	// strongly connected or not
-//	bool strongly = true;
-//
-//	// Traverse the path matrix
-//	for (int i = 0; i < n; i++) {
-//
-//		for (int j = 0; j < n; j++) {
-//
-//			// If all the elements are
-//			// not equal then the graph
-//			// is not strongly connected
-//			if (graph[i][j] != graph[j][i]) {
-//				strongly = false;
-//				break;
-//			}
-//		}
-//
-//		// Break out of the loop if false
-//		if (!strongly) {
-//			break;
-//		}
-//	}
-//	// If true then print strongly
-//	// connected and return
-//	if (strongly) {
-//		cout << "Strongly Connected" << endl;;
-//		return 0;
-//	}
-//
-//	// Check whether the graph is
-//	// Unilaterally connected by
-//	// checking Upper Triangle element
-//	bool uppertri = true;
-//
-//	// Traverse the path matrix
-//	for (int i = 0; i < n; i++) {
-//
-//		for (int j = 0; j < n; j++) {
-//
-//			// If uppertriangle elements
-//			// are 0 then break out of the
-//			// loop and check the elements
-//			// of lowertriangle matrix
-//			if (i > j && graph[i][j] == 0) {
-//				uppertri = false;
-//				break;
-//			}
-//		}
-//
-//		// Break out of the loop if false
-//		if (!uppertri) {
-//			break;
-//		}
-//	}
-//
-//	// If true then print unilaterally
-//	// connected and return
-//	if (uppertri) {
-//		cout << "Unilaterally Connected" << endl;
-//		return 0;
-//	}
-//
-//	// Check lowertraingle elements
-//	bool lowertri = true;
-//
-//	// Traverse the path matrix
-//	for (int i = 0; i < n; i++) {
-//
-//		for (int j = 0; j < n; j++) {
-//
-//			// If lowertraingle elements
-//			// are 0 then break cause
-//			// 1's are expected
-//			if (i < j && graph[i][j] == 0) {
-//				lowertri = false;
-//				break;
-//			}
-//		}
-//
-//		// Break out of the loop if false
-//		if (!lowertri) {
-//			break;
-//		}
-//	}
-//
-//	// If true then print unilaterally
-//	// connected and return
-//	if (lowertri) {
-//		cout << "Unilaterally Connected" << endl;
-//		return 0;
-//	}
-//
-//	// If elements are in random order
-//	// unsynchronized then print weakly
-//	// connected and return
-//	else {
-//		cout << "Weakly Connected" << endl;;
-//	}
-//
-//	return 0;
-//}
-
-
-//void traverse(int u, bool visited[]) {
-//	visited[u] = true; //mark v as visited
-//	for (int v = 0; v < n; v++) {
-//		if (graph[u][v]) {
-//			if (!visited[v])
-//				traverse(v, visited);
-//		}
-//	}
-//}
-//bool isConnected() {
-//	bool* vis = new bool[n];
-//	//for all vertex u as start point, check whether all nodes are visible or not
-//	for (int u; u < n; u++) {
-//		for (int i = 0; i < n; i++)
-//			vis[i] = false; //initialize as no node is visited
-//		traverse(u, vis);
-//		for (int i = 0; i < n; i++) {
-//			if (!vis[i]) //if there is a node, not visited by traversal, graph is not connected
-//				return false;
-//		}
-//	}
-//	return true;
-//}
 
 
 

@@ -11,15 +11,13 @@
 
 #define V 100
 
-// số đỉnh và số cạnh
-int n, m;
 
 /// <summary>
 /// tạo danh sách kề từ file txt, đồ thị có hướng
 /// </summary>
 /// <param name="fileName"></param>
 /// <param name="adj"></param>
-void loadDirectedGraph(string fileName, vector<int> adj[]) {
+void loadDirectedGraph(string fileName, vector<int> adj[], int n) {
 	// Open the file
 	ifstream inputFile(fileName);
 
@@ -77,7 +75,7 @@ void loadDirectedGraph(string fileName, vector<int> adj[]) {
 /// </summary>
 /// <param name="fileName"></param>
 /// <param name="adj"></param>
-void loadDirectedGraph(string fileName, vector<int> adj[], vector<int> r_adj[]) {
+int loadDirectedGraph(string fileName, vector<int> adj[], vector<int> r_adj[]) {
 	// Open the file
 	ifstream inputFile(fileName);
 
@@ -85,7 +83,7 @@ void loadDirectedGraph(string fileName, vector<int> adj[], vector<int> r_adj[]) 
 	if (!inputFile.is_open())
 	{
 		cerr << "Error opening file: " << fileName << endl;
-		return; // Return an error code
+		return 0; // Return an error code
 	}
 
 	// Read and print the contents of the file
@@ -93,7 +91,7 @@ void loadDirectedGraph(string fileName, vector<int> adj[], vector<int> r_adj[]) 
 
 	// đọc số đỉnh
 	getline(inputFile, line);
-	n = stoi(line);
+	int n = stoi(line);
 
 	int v = 0; // index cho từng đỉnh của vector adj
 	while (getline(inputFile, line))
@@ -126,8 +124,12 @@ void loadDirectedGraph(string fileName, vector<int> adj[], vector<int> r_adj[]) 
 		v++;
 	}
 
+	//cout << "Success" << endl;
+
 	// Close the file
 	inputFile.close();
+
+	return n;
 }
 
 
@@ -136,7 +138,7 @@ void loadDirectedGraph(string fileName, vector<int> adj[], vector<int> r_adj[]) 
 /// </summary>
 /// <param name="fileName"></param>
 /// <param name="adj"></param>
-void loadUndirectedGraph(string fileName, vector<int> adj[]) {
+void loadUndirectedGraph(string fileName, vector<int> adj[], int n) {
 	// Open the file
 	ifstream inputFile(fileName);
 
@@ -197,8 +199,10 @@ void loadUndirectedGraph(string fileName, vector<int> adj[]) {
 /// <param name="graph"></param>
 void loadGraphAdjMatrix(string filename, int graph[][V])
 {
+	int n = 0; // số đỉnh
+
 	vector<int> adj[100]; // danh sách kề
-	loadDirectedGraph(filename, adj);
+	loadDirectedGraph(filename, adj, n);
 
 	// tạo ma trận kề
 	for (int i = 0; i < n; i++)
@@ -215,7 +219,7 @@ void loadGraphAdjMatrix(string filename, int graph[][V])
 /// in ra danh sách kề
 /// </summary>
 /// <param name="adj"></param>
-void printAdjacencyList(vector<int> adj[])
+void printAdjacencyList(vector<int> adj[], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -232,7 +236,7 @@ void printAdjacencyList(vector<int> adj[])
 /// in ra ma trận kề
 /// </summary>
 /// <param name="graph"></param>
-void printAdjacencyMatrix(int graph[][V])
+void printAdjacencyMatrix(int graph[][V], int n)
 {
 	for (int i = 0; i < n; i++)
 	{

@@ -13,10 +13,6 @@ int unDirectedGraph[V][V];
 vector<int> directedAdjacencyList[V], r_directedAdjacencyList[V];
 vector<int> undirectedAdjacencyList[V];
 
-// visited array
-bool visited[V];
-
-
 vector<string> yeuCau2 = { "yeuCau2_1.txt", "yeuCau2_2.txt","yeuCau2_3.txt", "yeuCau2_4.txt" };
 
 // Driver Code
@@ -24,7 +20,7 @@ int main()
 {
 	std::cout << "Do an Ly thuyet do thi - HK2/2023-2024\n";
 
-	memset(visited, false, sizeof(visited));
+	int n; // số đỉnh
 
 	// Specify the file name
 	string example = "example.txt";
@@ -33,66 +29,25 @@ int main()
 	string yeuCau2_3 = "yeuCau2_3.txt";
 	string yeuCau2_4 = "yeuCau2_4.txt";
 
-	//for (string v : yeuCau2) {
-	//	loadDirectedGraph(v, directedAdjacencyList);
-	//	//loadGraphAdjMatrix(v, graph);
-	//	printAdjacencyList(directedAdjacencyList);
-	//	//printAdjacencyMatrix(graph);
+	for (string v : yeuCau2)
+	{
+		n = loadDirectedGraph(v, directedAdjacencyList, r_directedAdjacencyList);
+		stronglyConnectedComponents(directedAdjacencyList, r_directedAdjacencyList, n);
 
-	//	int n = connectedComponents(directedAdjacencyList);
-	//	cout << "so thanh phan lien thong: " << n << endl;
+		// clear adjacency list
+		for (int i = 0; i < n; i++)
+		{
+			directedAdjacencyList[i].clear();
+			r_directedAdjacencyList[i].clear();
 
-	//	// clear adjacency list
-	//	for (int i = 0; i < V; i++) {
-	//		directedAdjacencyList[i].clear();
-	//	}
-	//}
+		}
+	}
 
-	loadDirectedGraph(yeuCau2_2, directedAdjacencyList, r_directedAdjacencyList);
-	printAdjacencyList(directedAdjacencyList);
-	printAdjacencyList(r_directedAdjacencyList);
+	//n = loadDirectedGraph(yeuCau2_4, directedAdjacencyList, r_directedAdjacencyList);
+	//printAdjacencyList(directedAdjacencyList, n);
+	//printAdjacencyList(r_directedAdjacencyList, n);
 
-	//loadUndirectedGraph(yeuCau2_3, undirectedAdjacencyList);
-	//loadGraphAdjMatrix(yeuCau2_3, graph);
-	//printAdjacencyMatrix(graph);
-	//printAdjacencyList(undirectedAdjacencyList);
-
-	//int n = connectedComponents(directedAdjacencyList);
-	//cout << "so thanh phan lien thong: " << n << endl;
-
-	//int m = connectedComponents(undirectedAdjacencyList);
-	//cout << "so thanh phan lien thong: " << m << endl;
-
-	//checkConnected(graph, n);
-
-	// Number of nodes
-	//int n = 3;
-
-	// Given Path Matrix
-	//int graph[V][V] = {
-	//	{ 0, 1, 1 },
-	//	{ 0, 0, 1 },
-	//	{ 0, 0, 0 },
-	//};
-
-	// Function Call
-	//checkConnected(graph, n);
-
-	//// Driver Code Starts
-	//GFG obj;
-	////int V = 5;
-	//vector<vector<int> > edges{
-	//	{ 1, 3 }, { 1, 4 }, { 2, 1 }, { 3, 2 }, { 4, 5 }
-	//};
-	//vector<vector<int> > ans = obj.findSCC(V, edges);
-	//cout << "Strongly Connected Components are:\n";
-	//for (auto x : ans) {
-	//	for (auto y : x) {
-	//		cout << y << " ";
-	//	}
-	//	cout << "\n";
-	//}
-
+	//stronglyConnectedComponents(directedAdjacencyList, r_directedAdjacencyList, n);
 
 	cout << "Ket thuc chuong trinh!" << endl;
 
