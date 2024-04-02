@@ -255,3 +255,15 @@ public:
 		return ans;
 	}
 };
+
+bool compare(edge a, edge b)
+{
+	return a.weight > b.weight;
+}
+
+void kruskal()
+{
+
+}
+
+
