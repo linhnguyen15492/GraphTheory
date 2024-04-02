@@ -15,6 +15,20 @@ vector<int> undirectedAdjacencyList[V];
 
 vector<string> yeuCau2_deBai = { "yeuCau2_1.txt", "yeuCau2_2.txt","yeuCau2_3.txt", "yeuCau2_4.txt" };
 
+void resetGraph(int n)
+{
+	// clear adjacency list
+	for (int i = 0; i < n; i++)
+	{
+		directedAdjacencyList[i].clear();
+		r_directedAdjacencyList[i].clear();
+
+	}
+
+	fill_n(directedGraph[0], V * V, 0);
+	fill_n(unDirectedGraph[0], V * V, 0);
+}
+
 
 void yeuCau2()
 {
@@ -38,17 +52,12 @@ void yeuCau2()
 
 		stronglyConnectedComponents(directedAdjacencyList, r_directedAdjacencyList, n);
 
-		// clear adjacency list
-		for (int i = 0; i < n; i++)
-		{
-			directedAdjacencyList[i].clear();
-			r_directedAdjacencyList[i].clear();
-
-		}
-
 		cout << endl;
+		resetGraph(n);
 	}
 }
+
+
 
 // Driver Code
 int main()
