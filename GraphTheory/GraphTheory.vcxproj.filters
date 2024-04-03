@@ -43,5 +43,26 @@
     <Text Include="yeuCau2_3.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="yeuCau1_1.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="yeuCau1_2.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="yeuCau3.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="yeuCau4.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="yeuCau5_1.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="yeuCau5_2.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="yeuCau5_3.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
