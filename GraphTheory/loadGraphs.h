@@ -28,6 +28,8 @@ vector<int> undirectedAdjacencyList[V];
 // edges
 vector<edge> edges;
 
+// vector pair
+vector<pair<int, int>> adjList[];
 
 int n, m; // số đỉnh, số cạnh
 int parent[V], sz[V]; // parent array

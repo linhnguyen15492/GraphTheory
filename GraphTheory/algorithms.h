@@ -13,6 +13,8 @@ stack<int> st;
 bool visited[V];
 
 
+
+
 /// <summary>
 /// thuật toán dfs để tìm kiếm thành phần liên thông mạnh, theo giải thuật Kosaraju
 /// </summary>
@@ -40,6 +42,7 @@ void dfs(int u, vector<int> adjacencyList[])
 	// đưa đỉnh u vào stack
 	st.push(u);
 }
+
 
 
 /// <summary>
@@ -174,6 +177,60 @@ int connectedComponents(vector<int> adj[], int n)
 
 	return count;
 }
+
+
+
+int countConnectedComponents_directedGraph(vector<int> adj[], int n)
+{
+	memset(visited, false, sizeof(visited));
+
+	int count = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (!visited[i])
+		{
+			count++;
+			dfs(i, adj);
+		}
+	}
+
+	return count;
+}
+
+int countConnectedComponents_undirectedGraph(vector<int> adj[], int n)
+{
+	memset(visited, false, sizeof(visited));
+
+	int count = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (!visited[i])
+		{
+			count++;
+			dfs(i, adj);
+		}
+	}
+
+	return count;
+}
+
+int countStronglyConnectedComponents(vector<int> adj[], vector<int> r_adj[], int n)
+{
+	memset(visited, false, sizeof(visited));
+
+	int count = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (!visited[i])
+		{
+			count++;
+			dfs(i, adj);
+		}
+	}
+
+	return count;
+}
+
 
 
 
@@ -345,3 +402,6 @@ void kruskal()
 }
 
 
+void prim() {
+
+}
