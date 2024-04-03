@@ -29,7 +29,7 @@ vector<int> undirectedAdjacencyList[V];
 vector<edge> edges;
 
 // vector pair
-vector<pair<int, int>> adjList[V];
+vector<pair<int, int>> adj[V];
 
 int n, m; // số đỉnh, số cạnh
 int parent[V], sz[V]; // parent array
@@ -294,7 +294,7 @@ void loadGraphAdjMatrix(string filename, int graph[][V])
 /// in ra danh sách kề
 /// </summary>
 /// <param name="adj"></param>
-void print(vector<int> adj[], int n)
+void printGraph(vector<int> adj[], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -311,7 +311,7 @@ void print(vector<int> adj[], int n)
 /// in ra ma trận kề
 /// </summary>
 /// <param name="graph"></param>
-void print(int graph[][V], int n)
+void printGraph(int graph[][V], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -383,8 +383,8 @@ void loadEdges(string fileName)
 						edges.push_back(e);
 
 						// đưa vào danh sách cạnh vector pair
-						adjList[v].push_back({ dest, weight });
-						adjList[dest].push_back({ v, weight });
+						adj[v].push_back({ dest, weight });
+						adj[dest].push_back({ v, weight });
 
 						m++;
 					}
@@ -403,10 +403,23 @@ void loadEdges(string fileName)
 }
 
 
-void print(vector<edge> edges)
+void printGraph(vector<edge> edges)
 {
 	for (edge e : edges)
 	{
 		cout << e.src << " " << e.dest << " " << e.weight << endl;
+	}
+}
+
+void printGraph(vector<pair<int, int>> edgeList[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << i << ": ";
+		for (pair<int, int> p : edgeList[i])
+		{
+			cout << "(" << p.first << "," << p.second << ")" << " ";
+		}
+		cout << endl;
 	}
 }

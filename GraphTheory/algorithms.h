@@ -9,9 +9,6 @@ using namespace std;
 
 stack<int> st;
 
-// visited array
-bool visited[V];
-
 
 /// <summary>
 /// thuật toán dfs để tìm kiếm thành phần liên thông mạnh, theo giải thuật Kosaraju
@@ -20,6 +17,9 @@ bool visited[V];
 /// <param name="adjacencyList"></param>
 void dfs(int u, vector<int> adjacencyList[])
 {
+	bool visited[V];
+	memset(visited, false, sizeof(visited));
+
 	// thăm đỉnh u
 	//cout << "tham dinh " << u << endl;
 
@@ -50,6 +50,9 @@ void dfs(int u, vector<int> adjacencyList[])
 /// <param name="r_adjacencyList"></param>
 void reverseDfs(int u, vector<int> r_adjacencyList[])
 {
+	bool visited[V];
+	memset(visited, false, sizeof(visited));
+
 	// thăm đỉnh u
 	cout << u << " ";
 
@@ -74,6 +77,8 @@ void reverseDfs(int u, vector<int> r_adjacencyList[])
 /// <param name="n"></param>
 void stronglyConnectedComponents(vector<int> adjacencyList[], vector<int> r_adjacencyList[], int n)
 {
+	bool visited[V];
+
 	//stack<int> st;
 	memset(visited, false, sizeof(visited));
 
@@ -117,6 +122,7 @@ void stronglyConnectedComponents(vector<int> adjacencyList[], vector<int> r_adja
 /// <param name="adjacencyList"></param>
 void bfs(int u, vector<int> adjacencyList[])
 {
+	bool visited[V];
 	memset(visited, false, sizeof(visited));
 
 	// tạo hàng đợi q
@@ -161,6 +167,7 @@ void bfs(int u, vector<int> adjacencyList[])
 /// <returns></returns>
 int connectedComponents(vector<int> adj[], int n)
 {
+	bool visited[V];
 	memset(visited, false, sizeof(visited));
 
 	int count = 0;
@@ -180,6 +187,7 @@ int connectedComponents(vector<int> adj[], int n)
 
 int countConnectedComponents_directedGraph(vector<int> adj[], int n)
 {
+	bool visited[V];
 	memset(visited, false, sizeof(visited));
 
 	int count = 0;
@@ -197,6 +205,7 @@ int countConnectedComponents_directedGraph(vector<int> adj[], int n)
 
 int countConnectedComponents_undirectedGraph(vector<int> adj[], int n)
 {
+	bool visited[V];
 	memset(visited, false, sizeof(visited));
 
 	int count = 0;
@@ -214,6 +223,7 @@ int countConnectedComponents_undirectedGraph(vector<int> adj[], int n)
 
 int countStronglyConnectedComponents(vector<int> adj[], vector<int> r_adj[], int n)
 {
+	bool visited[V];
 	memset(visited, false, sizeof(visited));
 
 	int count = 0;
@@ -400,45 +410,53 @@ void kruskal()
 }
 
 
-void prim(int u) {
+void prim(int u)
+{
+	bool mstSet[V]; // mảng lưu trữ các đỉnh đã được thêm vào cây khung
+	memset(mstSet, false, sizeof(mstSet));
+
 	// tạo cây khung cực đại rỗng
 	vector<edge> MST;
 	int d = 0;
 
-	// reset visited array
-	memset(visited, false, sizeof(visited));
-
-	// đánh dấu đỉnh u là đã được xét
-	visited[u] = true;
+	// đưa đỉnh u vào cây khung
+	mstSet[u] = true;
 
 	while (MST.size() < n - 1)
 	{
+		// e = {X, Y, w}: cạnh ngắn nhất có X thuộc cây khung, Y không thuộc cây khung
 		int max_w = INT_MIN;
 		int X, Y; // lưu 2 đỉnh cạnh e
 
 		for (int i = 0; i < n; i++)
 		{
 			// nếu đỉnh i thuộc cây khung MST
-			if (visited[i])
+			if (mstSet[i])
 			{
 				// duyệt danh sách kề của i, lấy ra đỉnh chưa thuộc cây khung
-				for (pair<int, int> p : adjList[i]) {
+				for (pair<int, int> p : adj[i]) {
 					int v = p.first;
 					int w = p.second;
 
-					if (!visited[v] && w > max_w) {
+					if (!mstSet[v] && w > max_w) {
 						max_w = w;
-						X = v;
-						Y = i;
+						X = i;
+						Y = v;
 					}
 				}
 			}
 		}
+
 		MST.push_back({ X, Y, max_w });
 		d += max_w;
-		visited[Y] = true;
+		mstSet[Y] = true; // cho đỉnh X vào V(MST), loại X khỏi V
 	}
 
 	cout << "Giai thuat Prim" << endl;
-	cout << "Chieu dai cuc dai cua cay khung: " << d << endl;
+	for (edge e : MST)
+	{
+		cout << e.src << " - " << e.dest << ": " << e.weight << endl;
+	}
+
+	cout << "Trong so cua cay khung: " << d << endl;
 }
