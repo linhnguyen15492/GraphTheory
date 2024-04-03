@@ -397,7 +397,8 @@ void loadEdges(string fileName)
 }
 
 
-void print(vector<edge> edges) {
+void print(vector<edge> edges)
+{
 	for (edge e : edges)
 	{
 		cout << e.src << " " << e.dest << " " << e.weight << endl;

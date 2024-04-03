@@ -14,7 +14,6 @@ bool visited[V];
 
 
 
-
 /// <summary>
 /// thuật toán dfs để tìm kiếm thành phần liên thông mạnh, theo giải thuật Kosaraju
 /// </summary>
@@ -402,6 +401,45 @@ void kruskal()
 }
 
 
-void prim() {
+void prim(int u) {
+	// tạo cây khung cực đại rỗng
+	vector<edge> MST;
+	int d = 0;
 
+	// reset visited array
+	memset(visited, false, sizeof(visited));
+
+	// đánh dấu đỉnh u là đã được xét
+	visited[u] = true;
+
+	while (MST.size() < n - 1)
+	{
+		int max_w = INT_MIN;
+		int X, Y; // lưu 2 đỉnh cạnh e
+
+		for (int i = 0; i < n; i++)
+		{
+			// nếu đỉnh i thuộc cây khung MST
+			if (visited[i])
+			{
+				// duyệt danh sách kề của i, lấy ra đỉnh chưa thuộc cây khung
+				for (pair<int, int> p : adjList[i]) {
+					int v = p.first;
+					int w = p.second;
+
+					if (!visited[v] && w > max_w) {
+						max_w = w;
+						X = v;
+						Y = i;
+					}
+				}
+			}
+		}
+		MST.push_back({ X, Y, max_w });
+		d += max_w;
+		visited[Y] = true;
+	}
+
+	cout << "Giai thuat Prim" << endl;
+	cout << "Chieu dai cuc dai cua cay khung: " << d << endl;
 }

@@ -83,6 +83,8 @@ int main()
 
 	yeuCau3();
 
+	prim(0);
+
 	cout << "Ket thuc chuong trinh!" << endl;
 
 	return 0;
