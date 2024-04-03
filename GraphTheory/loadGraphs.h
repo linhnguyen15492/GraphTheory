@@ -8,6 +8,7 @@
 #include <queue>
 #include <stack>
 #include <sstream>  
+#include <set>  
 
 #define V 100
 
@@ -19,20 +20,25 @@ struct edge
 
 // graph adjacency matrix
 int directedGraph[V][V];
-int unDirectedGraph[V][V];
+int undirectedGraph[V][V];
+int adjacencyMatrix[V][V];
 
-// graph adjacency list
+// graph adjacency list without weight
 vector<int> directedAdjacencyList[V], r_directedAdjacencyList[V];
 vector<int> undirectedAdjacencyList[V];
+
+// graph adjacency list with weight
+vector<pair<int, int>> adjacencyList[V], r_adjacencyList[V];
+vector<pair<int, int>> undirected_adjacencyList[V];
 
 // edges
 vector<edge> edges;
 
-// vector pair
-vector<pair<int, int>> adj[V];
-
 int n, m; // số đỉnh, số cạnh
 int parent[V], sz[V]; // parent array
+
+set<int> adj[V];
+int degree[V]; // bậc của đỉnh
 
 /// <summary>
 /// tạo danh sách kề từ file txt, đồ thị có hướng
@@ -82,6 +88,7 @@ void loadDirectedGraph(string fileName, vector<int> adj[], int n) {
 			}
 			// di chuyển đến phần tử tiếp theo
 			i++;
+
 		}
 		// di chuyển đến đỉnh tiếp theo
 		v++;
@@ -205,6 +212,80 @@ int loadDirectedGraph(string fileName, vector<int> adj[], vector<int> r_adj[]) {
 	inputFile.close();
 
 	return n;
+}
+
+
+void loadGraph(string fileName)
+{
+	// Open the file
+	ifstream inputFile(fileName);
+
+	// Check if the file is opened successfully
+	if (!inputFile.is_open())
+	{
+		cerr << "Error opening file: " << fileName << endl;
+		return; // Return an error code
+	}
+
+	// Read and print the contents of the file
+	string line;
+
+	// đọc số đỉnh
+	getline(inputFile, line);
+	n = stoi(line);
+
+	// Use while loop to check the getline() function condition.
+	int v = 0; // index cho từng đỉnh của vector adj
+	while (getline(inputFile, line))
+	{
+		// ss is an object of stringstream that references the S string.  
+		stringstream ss(line);
+		string word;
+
+		// index cho từng phần tử của mỗi dòng
+		int i = 0;
+		int dest, weight;
+		while (ss >> word) // Extract word from the stream.
+		{
+			// phần tử đầu tiên là số đỉnh kề
+			if (i == 0)
+			{
+			}
+			else
+			{
+				// phần tử lẻ là đỉnh kề
+				if (i % 2 == 1)
+				{
+					dest = stoi(word);
+				}
+				else
+				{
+					// phần tử chẵn là trọng số
+					weight = stoi(word);
+
+					// đưa vào danh sách kề có trọng số
+					adjacencyList[v].push_back({ dest, weight });
+
+					// đồng thời tạo ma trận kề
+					adjacencyMatrix[v][dest] = weight;
+
+					// đưa vào danh sách kề không trọng số
+					adj[v].insert(dest);
+					adj[dest].insert(v);
+					degree[v]++;
+					degree[dest]++;
+				}
+			}
+
+			// di chuyển đến phần tử tiếp theo
+			i++;
+		}
+		// di chuyển đến đỉnh tiếp theo
+		v++;
+	}
+
+	// Close the file
+	inputFile.close();
 }
 
 
@@ -383,8 +464,8 @@ void loadEdges(string fileName)
 						edges.push_back(e);
 
 						// đưa vào danh sách cạnh vector pair
-						adj[v].push_back({ dest, weight });
-						adj[dest].push_back({ v, weight });
+						adjacencyList[v].push_back({ dest, weight });
+						adjacencyList[dest].push_back({ v, weight });
 
 						m++;
 					}
@@ -422,4 +503,42 @@ void printGraph(vector<pair<int, int>> edgeList[], int n)
 		}
 		cout << endl;
 	}
+}
+
+void printDegree(int degree[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << i << ": " << degree[i] << endl;
+	}
+}
+
+void printGraph(set<int> adj[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << i << ": ";
+		for (int x : adj[i])
+		{
+			cout << x << " ";
+		}
+		cout << endl;
+	}
+}
+
+void resetGraph()
+{
+	// clear adjacency list
+	for (int i = 0; i < n; i++)
+	{
+		directedAdjacencyList[i].clear();
+		r_directedAdjacencyList[i].clear();
+		adjacencyList[i].clear();
+		r_adjacencyList[i].clear();
+		adj[i].clear();
+	}
+
+	fill_n(directedGraph[0], V * V, 0);
+	fill_n(undirectedGraph[0], V * V, 0);
+	fill_n(adjacencyMatrix[0], V * V, 0);
 }

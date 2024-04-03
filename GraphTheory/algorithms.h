@@ -5,10 +5,7 @@
 #include <print>
 using namespace std;
 
-#define V 100
-
 stack<int> st;
-
 
 /// <summary>
 /// thuật toán dfs để tìm kiếm thành phần liên thông mạnh, theo giải thuật Kosaraju
@@ -239,7 +236,21 @@ int countStronglyConnectedComponents(vector<int> adj[], vector<int> r_adj[], int
 	return count;
 }
 
+bool isUndirectedGraph(int adjMatrix[][V], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (adjMatrix[i][j] != adjMatrix[j][i])
+			{
+				return false;
+			}
+		}
+	}
 
+	return true;
+}
 
 
 class GFG {
@@ -410,7 +421,7 @@ void kruskal()
 }
 
 
-void prim(int u)
+void prim()
 {
 	bool mstSet[V]; // mảng lưu trữ các đỉnh đã được thêm vào cây khung
 	memset(mstSet, false, sizeof(mstSet));
@@ -418,6 +429,12 @@ void prim(int u)
 	// tạo cây khung cực đại rỗng
 	vector<edge> MST;
 	int d = 0;
+
+	int u;
+
+	cout << "Giai thuat Prim" << endl;
+	cout << "Nhap dinh bat dau: ";
+	cin >> u;
 
 	// đưa đỉnh u vào cây khung
 	mstSet[u] = true;
@@ -434,7 +451,7 @@ void prim(int u)
 			if (mstSet[i])
 			{
 				// duyệt danh sách kề của i, lấy ra đỉnh chưa thuộc cây khung
-				for (pair<int, int> p : adj[i]) {
+				for (pair<int, int> p : adjacencyList[i]) {
 					int v = p.first;
 					int w = p.second;
 
@@ -452,11 +469,24 @@ void prim(int u)
 		mstSet[Y] = true; // cho đỉnh X vào V(MST), loại X khỏi V
 	}
 
-	cout << "Giai thuat Prim" << endl;
 	for (edge e : MST)
 	{
 		cout << e.src << " - " << e.dest << ": " << e.weight << endl;
 	}
 
 	cout << "Trong so cua cay khung: " << d << endl;
+}
+
+void euler(int v)
+{
+	stack<int> st;
+	vector<int> eulerCyle;
+
+	st.push(v);
+
+	while (!st.empty()) {
+		int x = st.top();
+		//if()
+	}
+
 }
