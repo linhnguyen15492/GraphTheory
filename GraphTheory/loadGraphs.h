@@ -29,7 +29,7 @@ vector<int> undirectedAdjacencyList[V];
 vector<edge> edges;
 
 // vector pair
-vector<pair<int, int>> adjList[];
+vector<pair<int, int>> adjList[V];
 
 int n, m; // số đỉnh, số cạnh
 int parent[V], sz[V]; // parent array
@@ -384,6 +384,7 @@ void loadEdges(string fileName)
 
 						// đưa vào danh sách cạnh vector pair
 						adjList[v].push_back({ dest, weight });
+						adjList[dest].push_back({ v, weight });
 
 						m++;
 					}

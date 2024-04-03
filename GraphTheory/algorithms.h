@@ -13,7 +13,6 @@ stack<int> st;
 bool visited[V];
 
 
-
 /// <summary>
 /// thuật toán dfs để tìm kiếm thành phần liên thông mạnh, theo giải thuật Kosaraju
 /// </summary>
