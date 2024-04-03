@@ -378,8 +378,13 @@ void loadEdges(string fileName)
 
 					if (v < dest)
 					{
+						// đưa vào danh sách edges
 						e = { v, dest, weight };
 						edges.push_back(e);
+
+						// đưa vào danh sách cạnh vector pair
+						adjList[v].push_back({ dest, weight });
+
 						m++;
 					}
 				}
