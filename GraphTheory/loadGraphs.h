@@ -170,13 +170,13 @@ void printGraph(vector<edge> edges)
 	}
 }
 
-void printGraph(vector<pair<int, int>> edgeList[], int n)
+void printGraph(vector<pair<int, int>> adj[], int n)
 {
-	cout << "Danh sach ke: " << endl;
+	cout << "Danh sach ke co trong so: " << endl;
 	for (int i = 0; i < n; i++)
 	{
 		cout << i << ": ";
-		for (pair<int, int> p : edgeList[i])
+		for (pair<int, int> p : adj[i])
 		{
 			cout << "(" << p.first << "," << p.second << ")" << " ";
 		}
@@ -226,6 +226,8 @@ void resetGraph()
 
 	fill_n(adjacencyMatrix[0], V * V, 0);
 	fill_n(degree, V, 0);
+
+	edges.clear();
 }
 
 #pragma endregion

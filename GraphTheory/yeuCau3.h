@@ -10,7 +10,8 @@ void yeuCau3()
 	loadGraph(filename);
 
 	// in danh sách kề
-	//printGraph(adjacencyList, n);
+	printGraph(adjacencyList, n);
+	printGraph(adjacencyMatrix, n);
 	//printGraph(undirected_adjacencyList, n);
 	printGraph(edges);
 

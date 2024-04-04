@@ -11,11 +11,14 @@ void yeuCau2()
 		// load graph
 		loadGraph(v);
 
+		// in ra ma trận kề
+		printGraph(adjacencyMatrix, n);
+
 		//printGraph(undirected_adjacencyList, n);
 
 		// kiểm tra đồ thị có hướng
-		//string s = isUndirectedGraph(adjacencyMatrix, n) ? "Do thi vo huong" : "Do thi co huong";
-		//cout << s << endl;
+		string s = isUndirectedGraph(adjacencyMatrix, n) ? "Do thi vo huong" : "Do thi co huong";
+		cout << s << endl;
 
 
 		// kiểm tra đồ thị không có cạnh bội và không có cạnh khuyên
