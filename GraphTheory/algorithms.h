@@ -1,10 +1,5 @@
-﻿#include <iostream>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <print>
-using namespace std;
-
+﻿
+// cấu trúc stack để giải thuật toán Kosaraju
 stack<int> st;
 
 // visited array
@@ -74,7 +69,7 @@ void reverseDfs(int u, vector<pair<int, int>> r_adjacencyList[])
 /// </summary>
 /// <param name="u"></param>
 /// <param name="adjacencyList"></param>
-void bfs(int u, vector<int> adjacencyList[])
+void bfs(int u, vector<pair<int, int>> adjacencyList[])
 {
 	bool visited[V];
 	memset(visited, false, sizeof(visited));
@@ -98,8 +93,9 @@ void bfs(int u, vector<int> adjacencyList[])
 		cout << s << " ";
 
 		// duyệt các đỉnh kề với đỉnh s
-		for (int v : adjacencyList[s])
+		for (pair<int, int> p : adjacencyList[s])
 		{
+			int v = p.first;
 			// nếu đỉnh v chưa được xét
 			if (!visited[v])
 			{

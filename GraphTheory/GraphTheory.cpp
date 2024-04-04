@@ -1,5 +1,4 @@
-﻿#include <stdio.h>
-#include "loadGraphs.h"
+﻿#include "loadGraphs.h"
 #include "algorithms.h"
 #include "yeuCau1.h"
 #include "yeuCau2.h"

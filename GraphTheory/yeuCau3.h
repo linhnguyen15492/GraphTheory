@@ -17,9 +17,11 @@ void yeuCau3()
 	string filename = "yeuCau3.txt";
 	loadEdges(filename);
 
-	kruskal();
-
+	// tìm cây khung lớn nhất bằng thuật toán Prim
 	prim();
+
+	// tìm cây khung lớn nhất bằng thuật toán Kruskal
+	kruskal();
 }
 
 

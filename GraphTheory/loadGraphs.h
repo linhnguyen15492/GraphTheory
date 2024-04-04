@@ -1,5 +1,4 @@
-﻿using namespace std;
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <string>
 #include <vector>
 #include <fstream>
@@ -9,10 +8,12 @@
 #include <stack>
 #include <sstream>  
 #include <set>  
+using namespace std;
 
-#define V 100
 
 #pragma region khai báo cấu trúc dữ liệu
+
+#define V 100
 
 struct edge
 {

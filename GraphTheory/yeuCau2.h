@@ -1,12 +1,9 @@
-﻿#pragma region yêu cầu 2
-
+﻿#pragma region Yêu cầu 2
 
 vector<string> inputList = { "yeuCau2_1.txt", "yeuCau2_2.txt","yeuCau2_3.txt", "yeuCau2_4.txt", "yeuCau3.txt" };
 
 void yeuCau2()
 {
-	//int n; // số đỉnh
-
 	cout << "Yeu cau 2: Xac dinh thanh phan lien thong manh" << endl;
 
 	for (string v : inputList)
@@ -27,6 +24,10 @@ void yeuCau2()
 
 		// kiểm tra đồ thị không có cạnh bội và không có cạnh khuyên
 
+
+		// kiểm tra đồ thị có liên thông không
+
+		// xác định thành phần liên thông mạnh
 		//stronglyConnectedComponents(adjacencyList, r_adjacencyList, n);
 	}
 }
