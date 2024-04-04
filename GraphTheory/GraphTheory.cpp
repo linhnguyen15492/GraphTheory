@@ -12,9 +12,9 @@ int main()
 {
 	cout << "Do an Ly thuyet do thi - HK2/2023-2024 - Nhom DA-01" << endl;
 
-	yeuCau1();
+	//yeuCau1();
 
-	//yeuCau2();
+	yeuCau2();
 
 	//yeuCau3();
 
@@ -22,7 +22,7 @@ int main()
 
 	//yeuCau5();
 
-	cout << "Ket thuc chuong trinh!" << endl;
+	//cout << "Ket thuc chuong trinh!" << endl;
 
 	return 0;
 }

@@ -226,12 +226,14 @@ void isBarbellGraph(int adjMatrix[][V], int n)
 /// <param name="adjacencyList"></param>
 /// <param name="r_adjacencyList"></param>
 /// <param name="n"></param>
-void stronglyConnectedComponents(vector<pair<int, int>> adjacencyList[], vector<pair<int, int>> r_adjacencyList[], int n)
+int stronglyConnectedComponents(vector<pair<int, int>> adjacencyList[], vector<pair<int, int>> r_adjacencyList[], int n)
 {
 	memset(visited, false, sizeof(visited));
 
+	int count = 0;
+
 	// B1: gọi dfs trên đồ thị ban đầu
-	cout << "goi dfs tren do thi ban dau" << endl;
+	//cout << "goi dfs tren do thi ban dau" << endl;
 	for (int i = 0; i < n; i++)
 	{
 		//cout << "i: " << i << endl;
@@ -254,6 +256,8 @@ void stronglyConnectedComponents(vector<pair<int, int>> adjacencyList[], vector<
 
 		if (!visited[u])
 		{
+			++count;
+
 			cout << "Thanh phan lien thong manh " << j << ": ";
 			reverseDfs(u, r_adjacencyList);
 			cout << endl;
@@ -261,6 +265,8 @@ void stronglyConnectedComponents(vector<pair<int, int>> adjacencyList[], vector<
 			j++;
 		}
 	}
+
+	return count;
 }
 
 

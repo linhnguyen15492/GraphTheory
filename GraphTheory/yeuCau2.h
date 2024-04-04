@@ -27,14 +27,31 @@ void yeuCau2()
 		// kiểm tra đồ thị không có cạnh bội và không có cạnh khuyên
 
 
+
 		// kiểm tra đồ thị có liên thông không
 		int i = connectedComponents(undirected_adjacencyList, n);
-		string check = i > 1 ? "Do thi khong lien thong" : "Do thi lien thong";
-		cout << check << endl;
+		if (i > 1)
+		{
+			stronglyConnectedComponents(adjacencyList, r_adjacencyList, n);
+			cout << "Do thi khong lien thong" << endl;
+		}
+		else
+		{
+			int j = connectedComponents(adjacencyList, n);
+			if (j == 1)
+			{
+				// xác định thành phần liên thông mạnh
+				int c = stronglyConnectedComponents(adjacencyList, r_adjacencyList, n);
+				string result = c > 1 ? "Do thi lien thong tung phan" : "Do thi lien thong manh";
+				cout << result << endl;
+			}
+			else
+			{
+				stronglyConnectedComponents(adjacencyList, r_adjacencyList, n);
+				cout << "Do thi lien thong yeu" << endl;
+			}
+		}
 
-
-		// xác định thành phần liên thông mạnh
-		//stronglyConnectedComponents(adjacencyList, r_adjacencyList, n);
 
 		cout << endl;
 	}
