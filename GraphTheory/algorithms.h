@@ -176,6 +176,34 @@ void isWindmillGraph_Wd3n(int adjMatrix[][V])
 
 }
 
+
+void isBarbellGraph(int adjMatrix[][V], int n)
+{
+	/*
+	A barbell graph is a graph consisting of a path graph and a cycle graph that are connected by a single edge.
+	Barbell graphs are named for their resemblance to a barbell, with two large equal-size cliques connected by a path.
+
+	Properties:
+		The barbell graph contains cycles in it.
+		The barbell graph is connected every two nodes have a path between them.
+		It has a bridge between 2 complete graphs.
+		Bridge may and may not have nodes in it.
+
+
+	The Total number of Nodes = 2*N
+	Total number of edges = 2*(number of edges in complete graph) + 1 = 2*(n*(n-1)/2)+1 = n*(n-1) + 1
+
+	B1: nếu số đỉnh là lẻ => không là đồ thị Barbell
+
+	B2: nếu số cạnh khác với n*(n-1) + 1 => không là đồ thị Barbell
+	*/
+
+
+
+
+
+}
+
 #pragma endregion
 
 #pragma region yêu cầu 2
