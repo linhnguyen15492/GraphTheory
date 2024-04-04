@@ -132,6 +132,11 @@
   <ItemGroup>
     <ClInclude Include="algorithms.h" />
     <ClInclude Include="loadGraphs.h" />
+    <ClInclude Include="yeuCau1.h" />
+    <ClInclude Include="yeuCau2.h" />
+    <ClInclude Include="yeuCau3.h" />
+    <ClInclude Include="yeuCau4.h" />
+    <ClInclude Include="yeuCau5.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="example.txt" />

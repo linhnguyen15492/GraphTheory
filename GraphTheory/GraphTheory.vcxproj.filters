@@ -26,6 +26,21 @@
     <ClInclude Include="loadGraphs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="yeuCau2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="yeuCau3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="yeuCau5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="yeuCau1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="yeuCau4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="example.txt">

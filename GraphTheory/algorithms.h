@@ -7,25 +7,30 @@ using namespace std;
 
 stack<int> st;
 
+// visited array
+bool visited[V];
+
+#pragma region hàm dùng chung
+
+
 /// <summary>
 /// thuật toán dfs để tìm kiếm thành phần liên thông mạnh, theo giải thuật Kosaraju
 /// </summary>
 /// <param name="u"></param>
 /// <param name="adjacencyList"></param>
-void dfs(int u, vector<int> adjacencyList[])
+void dfs(int u, vector<pair<int, int>> adjacencyList[])
 {
-	bool visited[V];
-	memset(visited, false, sizeof(visited));
-
-	// thăm đỉnh u
-	//cout << "tham dinh " << u << endl;
+	//thăm đỉnh u
+	cout << "tham dinh " << u << endl;
 
 	// sau đó đánh dấu đỉnh u là đã được thăm
 	visited[u] = true;
 
 	// duyệt các đỉnh kề với đỉnh u
-	for (int v : adjacencyList[u])
+	for (pair<int, int> p : adjacencyList[u])
 	{
+		int v = p.first;
+
 		//cout << "dinh ke: " << v << endl;
 		if (!visited[v])
 		{
@@ -33,23 +38,19 @@ void dfs(int u, vector<int> adjacencyList[])
 		}
 	}
 
-	//cout << "da duyet xong dinh " << u << endl;
+	cout << "da duyet xong dinh " << u << endl;
 	// đưa đỉnh u vào stack
 	st.push(u);
 }
 
 
-
 /// <summary>
-/// in ra các đỉnh thuộc thành phần liên thông mạnh
+/// dfs đảo để tìm thành phần liên thông mạnh, thuật toán Kosaraju
 /// </summary>
 /// <param name="u"></param>
 /// <param name="r_adjacencyList"></param>
-void reverseDfs(int u, vector<int> r_adjacencyList[])
+void reverseDfs(int u, vector<pair<int, int>> r_adjacencyList[])
 {
-	bool visited[V];
-	memset(visited, false, sizeof(visited));
-
 	// thăm đỉnh u
 	cout << u << " ";
 
@@ -57,60 +58,16 @@ void reverseDfs(int u, vector<int> r_adjacencyList[])
 	visited[u] = true;
 
 	// duyệt các đỉnh kề với đỉnh u
-	for (int v : r_adjacencyList[u])
+	for (pair<int, int> p : r_adjacencyList[u])
 	{
+		int v = p.first;
+
 		if (!visited[v])
 		{
 			reverseDfs(v, r_adjacencyList);
 		}
 	}
 }
-
-/// <summary>
-/// thuật toán Kosaraju để tìm thành phần liên thông mạnh
-/// </summary>
-/// <param name="adjacencyList"></param>
-/// <param name="r_adjacencyList"></param>
-/// <param name="n"></param>
-void stronglyConnectedComponents(vector<int> adjacencyList[], vector<int> r_adjacencyList[], int n)
-{
-	bool visited[V];
-
-	//stack<int> st;
-	memset(visited, false, sizeof(visited));
-
-	// B1: gọi dfs trên đồ thị ban đầu
-	//cout << "goi dfs tren do thi ban dau" << endl;
-	for (int i = 0; i < n; i++)
-	{
-		if (!visited[i])
-		{
-			dfs(i, adjacencyList);
-		}
-	}
-
-	// reset visited array
-	memset(visited, false, sizeof(visited));
-
-	//cout << "goi dfs tren do thi dao" << endl;
-	// B2: gọi dfs trên đồ thị đảo
-	int j = 1;
-	while (!st.empty())
-	{
-		int u = st.top();
-		st.pop();
-
-		if (!visited[u])
-		{
-			cout << "Thanh phan lien thong manh " << j << ": ";
-			reverseDfs(u, r_adjacencyList);
-			cout << endl;
-
-			j++;
-		}
-	}
-}
-
 
 /// <summary>
 /// thuật toán bfs để duyệt đồ thị
@@ -156,86 +113,12 @@ void bfs(int u, vector<int> adjacencyList[])
 	}
 }
 
-
 /// <summary>
-/// đếm số thành phần liên thông của đồ thị, áp dụng trên đồ thị vô hướng để xác định đồ thị có liên thông hay không
+/// xác định đồ thị có phải là đồ thị vô hướng hay không
 /// </summary>
-/// <param name="adj"></param>
+/// <param name="adjMatrix"></param>
+/// <param name="n"></param>
 /// <returns></returns>
-int connectedComponents(vector<int> adj[], int n)
-{
-	bool visited[V];
-	memset(visited, false, sizeof(visited));
-
-	int count = 0;
-	for (int i = 0; i < n; i++)
-	{
-		if (!visited[i])
-		{
-			count++;
-			dfs(i, adj);
-		}
-	}
-
-	return count;
-}
-
-
-
-int countConnectedComponents_directedGraph(vector<int> adj[], int n)
-{
-	bool visited[V];
-	memset(visited, false, sizeof(visited));
-
-	int count = 0;
-	for (int i = 0; i < n; i++)
-	{
-		if (!visited[i])
-		{
-			count++;
-			dfs(i, adj);
-		}
-	}
-
-	return count;
-}
-
-int countConnectedComponents_undirectedGraph(vector<int> adj[], int n)
-{
-	bool visited[V];
-	memset(visited, false, sizeof(visited));
-
-	int count = 0;
-	for (int i = 0; i < n; i++)
-	{
-		if (!visited[i])
-		{
-			count++;
-			dfs(i, adj);
-		}
-	}
-
-	return count;
-}
-
-int countStronglyConnectedComponents(vector<int> adj[], vector<int> r_adj[], int n)
-{
-	bool visited[V];
-	memset(visited, false, sizeof(visited));
-
-	int count = 0;
-	for (int i = 0; i < n; i++)
-	{
-		if (!visited[i])
-		{
-			count++;
-			dfs(i, adj);
-		}
-	}
-
-	return count;
-}
-
 bool isUndirectedGraph(int adjMatrix[][V], int n)
 {
 	for (int i = 0; i < n; i++)
@@ -253,86 +136,98 @@ bool isUndirectedGraph(int adjMatrix[][V], int n)
 }
 
 
-class GFG {
-public:
-	// dfs Function to reach destination
-	bool dfs(int curr, int des, vector<vector<int> >& adj,
-		vector<int>& vis)
-	{
+//bool isConnected(vector<int> adj[], int n)
+//{
+//	bool visited[V];
+//	memset(visited, false, sizeof(visited));
+//
+//	// duyệt đồ thị bằng bfs
+//	bfs(0, adj);
+//
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (!visited[i])
+//		{
+//			return false;
+//		}
+//	}
+//
+//	return true;
+//}
 
-		// If curr node is destination return true
-		if (curr == des) {
-			return true;
+#pragma endregion
+
+
+#pragma region yêu cầu 2
+
+
+/// <summary>
+/// thuật toán Kosaraju để tìm thành phần liên thông mạnh
+/// </summary>
+/// <param name="adjacencyList"></param>
+/// <param name="r_adjacencyList"></param>
+/// <param name="n"></param>
+void stronglyConnectedComponents(vector<pair<int, int>> adjacencyList[], vector<pair<int, int>> r_adjacencyList[], int n)
+{
+	memset(visited, false, sizeof(visited));
+
+	// B1: gọi dfs trên đồ thị ban đầu
+	cout << "goi dfs tren do thi ban dau" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		//cout << "i: " << i << endl;
+		if (!visited[i])
+		{
+			dfs(i, adjacencyList);
 		}
-		vis[curr] = 1;
-		for (auto x : adj[curr]) {
-			if (!vis[x]) {
-				if (dfs(x, des, adj, vis)) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 
-	// To tell whether there is path from source to
-	// destination
-	bool isPath(int src, int des, vector<vector<int> >& adj)
+	// reset visited array
+	memset(visited, false, sizeof(visited));
+
+	//cout << "goi dfs tren do thi dao" << endl;
+	// B2: gọi dfs trên đồ thị đảo
+	int j = 1; // thứ tự thành phần liên thông mạnh
+	while (!st.empty())
 	{
-		vector<int> vis(adj.size() + 1, 0);
-		return dfs(src, des, adj, vis);
+		int u = st.top();
+		st.pop();
+
+		if (!visited[u])
+		{
+			cout << "Thanh phan lien thong manh " << j << ": ";
+			reverseDfs(u, r_adjacencyList);
+			cout << endl;
+
+			j++;
+		}
+	}
+}
+
+
+int connectedComponents(vector<pair<int, int>> adj[], int n)
+{
+	bool visited[V];
+	memset(visited, false, sizeof(visited));
+
+	int count = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (!visited[i])
+		{
+			count++;
+			dfs(i, adj);
+		}
 	}
 
-	// Function to return all the strongly connected
-	// component of a graph.
-	vector<vector<int> > findSCC(int n, vector<vector<int>>& a)
-	{
-		// Stores all the strongly connected components.
-		vector<vector<int> > ans;
+	return count;
+}
 
-		// Stores whether a vertex is a part of any Strongly
-		// Connected Component
-		vector<int> is_scc(n + 1, 0);
 
-		vector<vector<int> > adj(n + 1);
+#pragma endregion
 
-		for (int i = 0; i < a.size(); i++) {
-			adj[a[i][0]].push_back(a[i][1]);
-		}
 
-		// Traversing all the vertices
-		for (int i = 1; i <= n; i++) {
-
-			if (!is_scc[i]) {
-
-				// If a vertex i is not a part of any SCC
-				// insert it into a new SCC list and check
-				// for other vertices whether they can be
-				// thr part of thidl ist.
-				vector<int> scc;
-				scc.push_back(i);
-
-				for (int j = i + 1; j <= n; j++) {
-
-					// If there is a path from vertex i to
-					// vertex j and vice versa put vertex j
-					// into the current SCC list.
-					if (!is_scc[j] && isPath(i, j, adj)
-						&& isPath(j, i, adj)) {
-						is_scc[j] = 1;
-						scc.push_back(j);
-					}
-				}
-
-				// Insert the SCC containing vertex i into
-				// the final list.
-				ans.push_back(scc);
-			}
-		}
-		return ans;
-	}
-};
-
+#pragma region yêu cầu 3
 
 void makeSet() {
 	for (int i = 0; i < n; i++)
@@ -477,16 +372,76 @@ void prim()
 	cout << "Trong so cua cay khung: " << d << endl;
 }
 
+
+#pragma endregion
+
+
+#pragma region yêu cầu 5
+
+bool isEulerPath(int degree[], int n)
+{
+	int odd = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (degree[i] % 2 != 0)
+		{
+			odd++;
+		}
+	}
+
+	if (odd == 0 || odd == 2)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool isEulerCircuit(int degree[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (degree[i] % 2 != 0)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
 void euler(int v)
 {
 	stack<int> st;
-	vector<int> eulerCyle;
+	vector<int> eulerCircuit;
 
 	st.push(v);
 
 	while (!st.empty()) {
 		int x = st.top();
-		//if()
+		if (adj[x].size() != 0)
+		{
+			// lấy đỉnh kề đầu tiên của x đưa vào stack
+			int y = *adj[x].begin();
+			st.push(y);
+
+			// xóa cạnh giữa x và y
+			adj[x].erase(y);
+			adj[y].erase(x);
+		}
+		else {
+			// nếu x không có đỉnh kề nào thì đưa x vào chu trình euler
+			eulerCircuit.push_back(x);
+			// xóa x khỏi stack
+			st.pop();
+		}
 	}
 
+	reverse(begin(eulerCircuit), end(eulerCircuit));
+	for (int e : eulerCircuit)
+	{
+		cout << e << " ";
+	}
 }
+
+#pragma endregion 
