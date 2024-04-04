@@ -10,7 +10,7 @@ using namespace std;
 // Driver Code
 int main()
 {
-	std::cout << "Do an Ly thuyet do thi - HK2/2023-2024 - Nhom DA-01\n";
+	cout << "Do an Ly thuyet do thi - HK2/2023-2024 - Nhom DA-01" << endl;
 
 	yeuCau1();
 
