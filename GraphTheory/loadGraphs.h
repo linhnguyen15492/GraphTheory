@@ -112,7 +112,6 @@ void loadGraph(string fileName)
 					// tạo danh sách kề của đồ thị vô hướng
 					undirected_adjacencyList[v].push_back({ dest, weight });
 					undirected_adjacencyList[dest].push_back({ v, weight });
-
 				}
 			}
 
