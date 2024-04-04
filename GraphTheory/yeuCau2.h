@@ -8,10 +8,13 @@ void yeuCau2()
 
 	for (string v : inputList)
 	{
+		cout << "Do thi file " << v << ":\n";
+
 		// load graph
 		loadGraph(v);
 
 		// in ra ma trận kề
+		printGraph(adjacencyList, n);
 		printGraph(adjacencyMatrix, n);
 
 		//printGraph(undirected_adjacencyList, n);
@@ -32,6 +35,8 @@ void yeuCau2()
 
 		// xác định thành phần liên thông mạnh
 		//stronglyConnectedComponents(adjacencyList, r_adjacencyList, n);
+
+		cout << endl;
 	}
 }
 

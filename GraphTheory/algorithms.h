@@ -257,8 +257,8 @@ void kruskal()
 	// sắp xếp các cạnh theo thứ tự giảm dần
 	sort(edges.begin(), edges.end(), compare);
 
-	cout << "So canh: " << m << endl;
-	cout << "smt size: " << mst.size() << endl;
+	//cout << "So canh: " << m << endl;
+	//cout << "smt size: " << mst.size() << endl;
 
 	// lặp
 	for (int i = 0; i < edges.size(); i++)
@@ -272,15 +272,16 @@ void kruskal()
 
 		if (merge(e.src, e.dest))
 		{
-			cout << "merge: " << e.src << " " << e.dest << " " << e.weight << endl;
+			//cout << "merge: " << e.src << " " << e.dest << " " << e.weight << endl;
 			mst.push_back(e);
 			d += e.weight;
 		}
 		else {
-			cout << "khong merge: " << e.src << " " << e.dest << " " << e.weight << endl;
+			//cout << "khong merge: " << e.src << " " << e.dest << " " << e.weight << endl;
 		}
 	}
 
+	// in ra kết quả cây khung
 	cout << "Giai thuat Kruskal" << endl;
 	cout << "Tap canh cua cay khung: " << endl;
 
@@ -289,10 +290,8 @@ void kruskal()
 		cout << e.src << " - " << e.dest << ": " << e.weight << endl;
 	}
 
-	// trả về kết quả
 	cout << "Trong so cua cay khung: " << d << endl;
 }
-
 
 void prim()
 {
@@ -342,6 +341,8 @@ void prim()
 		mstSet[Y] = true; // cho đỉnh X vào V(MST), loại X khỏi V
 	}
 
+
+	// in ra kết quả cây khung
 	for (edge e : MST)
 	{
 		cout << e.src << " - " << e.dest << ": " << e.weight << endl;
@@ -488,11 +489,14 @@ void euler(int v)
 		}
 	}
 
+	// in chu trình euler
 	reverse(begin(eulerCircuit), end(eulerCircuit));
 	for (int e : eulerCircuit)
 	{
 		cout << e << " ";
 	}
+
+	cout << endl;
 }
 
 #pragma endregion 

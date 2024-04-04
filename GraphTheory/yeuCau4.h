@@ -17,6 +17,8 @@ void yeuCau4()
 	printGraph(adjacencyMatrix, n);
 
 	floydWarshall(adjacencyMatrix);
+
+	cout << endl;
 }
 
 #pragma endregion

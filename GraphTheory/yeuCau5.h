@@ -27,6 +27,8 @@ void yeuCau5()
 	cout << "Is euler path " << isEulerPath(degree, n) << endl;
 
 	euler(3);
+
+	cout << endl;
 }
 
 #pragma endregion

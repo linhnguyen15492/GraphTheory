@@ -29,6 +29,8 @@ void yeuCau3()
 
 	// tìm cây khung lớn nhất bằng thuật toán Kruskal
 	kruskal();
+
+	cout << endl;
 }
 
 
