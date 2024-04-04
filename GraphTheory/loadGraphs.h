@@ -14,6 +14,7 @@ using namespace std;
 #pragma region khai báo cấu trúc dữ liệu
 
 #define V 100
+#define INF 99999
 
 struct edge
 {

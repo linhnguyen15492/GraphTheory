@@ -354,6 +354,79 @@ void prim()
 #pragma endregion
 
 
+#pragma region yêu cầu 4
+
+
+// A function to print the solution matrix
+void printSolution(int dist[][V]);
+
+// Solves the all-pairs shortest path
+// problem using Floyd Warshall algorithm
+void floydWarshall(int dist[][V])
+{
+
+	int i, j, k;
+
+	/* Add all vertices one by one to the set of intermediate vertices. ---> Before start of an iteration,
+	we have shortest distances between all pairs of vertices such that the shortest distances consider only the
+	vertices in set {0, 1, 2, .. k-1} as intermediate vertices.
+	----> After the end of an iteration, vertex no. k is added to the set of	intermediate vertices and the set becomes {0, 1, 2, ..	k} */
+	for (k = 0; k < n; k++) {
+		// Pick all vertices as source one by one
+		for (i = 0; i < n; i++) {
+			// Pick all vertices as destination for the
+			// above picked source
+			for (j = 0; j < n; j++) {
+				// If vertex k is on the shortest path from
+				// i to j, then update the value of
+				// dist[i][j]
+				if (dist[i][j] > (dist[i][k] + dist[k][j]) && (dist[k][j] != INF && dist[i][k] != INF))
+					dist[i][j] = dist[i][k] + dist[k][j];
+			}
+		}
+	}
+
+	// Print the shortest distance matrix
+	printSolution(dist);
+}
+
+/* A utility function to print solution */
+void printSolution(int dist[][V])
+{
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (dist[i][j] == INF)
+				cout << "INF"
+				<< " ";
+			else
+				cout << dist[i][j] << "   ";
+		}
+		cout << endl;
+	}
+}
+
+
+void transformGraph(int adjacencyMatrix[][V])
+{
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (i == j) {
+				adjacencyMatrix[i][j] = 0;
+			}
+			else if (adjacencyMatrix[i][j] == 0) {
+				adjacencyMatrix[i][j] = INF;
+			}
+			else
+			{
+				continue;
+			}
+		}
+	}
+}
+
+#pragma endregion
+
+
 #pragma region yêu cầu 5
 
 bool isEulerPath(int degree[], int n)

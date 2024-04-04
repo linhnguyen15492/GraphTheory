@@ -14,7 +14,9 @@ int main()
 
 	//yeuCau2();
 
-	yeuCau3();
+	//yeuCau3();
+
+	yeuCau4();
 
 	//yeuCau5();
 
