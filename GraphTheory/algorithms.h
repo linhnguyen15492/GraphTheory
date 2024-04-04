@@ -152,6 +152,17 @@ int connectedComponents(vector<pair<int, int>> adj[], int n)
 }
 
 
+bool isLoopEdges(int adjMatrix[][V], int n)
+{
+
+}
+
+bool isMultiEdges(int adjMatrix[][V], int n)
+{
+
+}
+
+
 #pragma endregion
 
 #pragma region yêu cầu 1
