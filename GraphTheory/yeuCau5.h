@@ -4,8 +4,15 @@ void yeuCau5()
 {
 	cout << "Yeu cau 5: Tim chu trinh hoac duong di Euler" << endl;
 
-	//string filename = "yeuCau5_1.txt";
+	//
 	//loadGraph(filename);
+
+
+	// kiểm tra đồ thị vô hướng
+
+	// kiểm tra đồ thị liên thông
+
+	//string filename = "yeuCau5_1.txt";
 	//printGraph(adj, n);
 
 	string filename = "yeuCau5_3.txt";

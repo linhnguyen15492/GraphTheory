@@ -15,9 +15,9 @@ int main()
 
 	yeuCau2();
 
-	yeuCau3();
+	//yeuCau3();
 
-	yeuCau5();
+	//yeuCau5();
 
 	cout << "Ket thuc chuong trinh!" << endl;
 

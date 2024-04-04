@@ -136,24 +136,24 @@ bool isUndirectedGraph(int adjMatrix[][V], int n)
 }
 
 
-//bool isConnected(vector<int> adj[], int n)
-//{
-//	bool visited[V];
-//	memset(visited, false, sizeof(visited));
-//
-//	// duyệt đồ thị bằng bfs
-//	bfs(0, adj);
-//
-//	for (int i = 0; i < n; i++)
-//	{
-//		if (!visited[i])
-//		{
-//			return false;
-//		}
-//	}
-//
-//	return true;
-//}
+bool isConnected(vector<int> adj[], int n)
+{
+	bool visited[V];
+	memset(visited, false, sizeof(visited));
+
+	// duyệt đồ thị bằng bfs
+	bfs(0, adj);
+
+	for (int i = 0; i < n; i++)
+	{
+		if (!visited[i])
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
 
 #pragma endregion
 

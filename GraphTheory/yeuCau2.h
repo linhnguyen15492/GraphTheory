@@ -11,32 +11,23 @@ void yeuCau2()
 
 	for (string v : inputList)
 	{
-		//n = loadDirectedGraph(v, directedAdjacencyList, r_directedAdjacencyList);
-		//loadDirectedGraph(v);
-		//print(directedAdjacencyList, n);
-
-
-		//int c = connectedComponents(directedAdjacencyList, n);
-		//cout << "So thanh phan lien thong: " << c << endl;
-
-		//stronglyConnectedComponents(directedAdjacencyList, r_directedAdjacencyList, n);
-
-		//cout << endl;
-
+		// load graph
 		loadGraph(v);
-		//printGraph(adjacencyList, n);
-		//printGraph(adjacencyMatrix, n);
-		//printGraph(undirected_adjacencyList, n);
-		//printGraph(adj, n);
-		//printDegree(degree, n);
 
-		//bool a = isUndirectedGraph(adjacencyMatrix, n);
-		//cout << "Is undirected graph: " << a << endl;
+		printGraph(adjacencyMatrix, n);
 
-		//int c = connectedComponents(adjacencyList, n);
-		//cout << "So thanh phan lien thong: " << c << endl;
+		// kiểm tra đồ thị có hướng
+		if (!isUndirectedGraph(adjacencyMatrix, n))
+		{
+			cout << "Day la do thi co huong" << endl;
+		}
+		else {
+			cout << "Day la do thi vo huong" << endl;
+		}
 
-		stronglyConnectedComponents(adjacencyList, r_adjacencyList, n);
+		// kiểm tra đồ thị không có cạnh bội và không có cạnh khuyên
+
+		//stronglyConnectedComponents(adjacencyList, r_adjacencyList, n);
 	}
 }
 
