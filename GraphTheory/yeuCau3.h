@@ -4,18 +4,18 @@ void yeuCau3()
 {
 	cout << "Yeu cau 3: Tim cay khung lon nhat" << endl;
 
-	// load graph
+	string filename = "yeuCau3.txt";
 
+	// load graph
+	loadEdges(filename);
 
 	// kiểm tra đồ thị vô hướng 
 
 
+
 	// kiểm tra đồ thị liên thông
-
-
-
-	string filename = "yeuCau3.txt";
-	loadEdges(filename);
+	string v = isConnected(undirected_adjacencyList, n) ? "Do thi lien thong" : "Do thi khong lien thong";
+	cout << v << endl;
 
 	// tìm cây khung lớn nhất bằng thuật toán Prim
 	prim();

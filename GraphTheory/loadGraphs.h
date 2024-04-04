@@ -293,6 +293,7 @@ void resetGraph()
 	{
 		adjacencyList[i].clear();
 		r_adjacencyList[i].clear();
+		undirected_adjacencyList[i].clear();
 		adj[i].clear();
 	}
 

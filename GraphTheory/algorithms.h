@@ -16,7 +16,7 @@ bool visited[V];
 void dfs(int u, vector<pair<int, int>> adjacencyList[])
 {
 	//thăm đỉnh u
-	cout << "tham dinh " << u << endl;
+	//cout << "tham dinh " << u << endl;
 
 	// sau đó đánh dấu đỉnh u là đã được thăm
 	visited[u] = true;
@@ -33,7 +33,7 @@ void dfs(int u, vector<pair<int, int>> adjacencyList[])
 		}
 	}
 
-	cout << "da duyet xong dinh " << u << endl;
+	//cout << "da duyet xong dinh " << u << endl;
 	// đưa đỉnh u vào stack
 	st.push(u);
 }
@@ -132,25 +132,6 @@ bool isUndirectedGraph(int adjMatrix[][V], int n)
 }
 
 
-bool isConnected(vector<int> adj[], int n)
-{
-	bool visited[V];
-	memset(visited, false, sizeof(visited));
-
-	// duyệt đồ thị bằng bfs
-	bfs(0, adj);
-
-	for (int i = 0; i < n; i++)
-	{
-		if (!visited[i])
-		{
-			return false;
-		}
-	}
-
-	return true;
-}
-
 #pragma endregion
 
 
@@ -203,7 +184,6 @@ void stronglyConnectedComponents(vector<pair<int, int>> adjacencyList[], vector<
 
 int connectedComponents(vector<pair<int, int>> adj[], int n)
 {
-	bool visited[V];
 	memset(visited, false, sizeof(visited));
 
 	int count = 0;
@@ -211,10 +191,12 @@ int connectedComponents(vector<pair<int, int>> adj[], int n)
 	{
 		if (!visited[i])
 		{
-			count++;
+			++count;
 			dfs(i, adj);
 		}
 	}
+
+	//cout << "So thanh phan lien thong: " << count << endl;
 
 	return count;
 }
