@@ -154,12 +154,12 @@ int connectedComponents(vector<pair<int, int>> adj[], int n)
 
 bool isLoopEdges(int adjMatrix[][V], int n)
 {
-
+	return true;
 }
 
 bool isMultiEdges(int adjMatrix[][V], int n)
 {
-
+	return true;
 }
 
 
