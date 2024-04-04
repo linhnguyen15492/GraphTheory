@@ -132,6 +132,26 @@ bool isUndirectedGraph(int adjMatrix[][V], int n)
 }
 
 
+int connectedComponents(vector<pair<int, int>> adj[], int n)
+{
+	memset(visited, false, sizeof(visited));
+
+	int count = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (!visited[i])
+		{
+			++count;
+			dfs(i, adj);
+		}
+	}
+
+	//cout << "So thanh phan lien thong: " << count << endl;
+
+	return count;
+}
+
+
 #pragma endregion
 
 
@@ -179,26 +199,6 @@ void stronglyConnectedComponents(vector<pair<int, int>> adjacencyList[], vector<
 			j++;
 		}
 	}
-}
-
-
-int connectedComponents(vector<pair<int, int>> adj[], int n)
-{
-	memset(visited, false, sizeof(visited));
-
-	int count = 0;
-	for (int i = 0; i < n; i++)
-	{
-		if (!visited[i])
-		{
-			++count;
-			dfs(i, adj);
-		}
-	}
-
-	//cout << "So thanh phan lien thong: " << count << endl;
-
-	return count;
 }
 
 

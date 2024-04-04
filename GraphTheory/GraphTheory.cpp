@@ -12,9 +12,9 @@ int main()
 {
 	std::cout << "Do an Ly thuyet do thi - HK2/2023-2024 - Nhom DA-01\n";
 
-	yeuCau2();
+	//yeuCau2();
 
-	//yeuCau3();
+	yeuCau3();
 
 	//yeuCau5();
 

@@ -78,6 +78,7 @@ void loadGraph(string fileName)
 		// index cho từng phần tử của mỗi dòng
 		int i = 0;
 		int dest, weight;
+		edge e;
 		while (ss >> word) // Extract word from the stream.
 		{
 			// phần tử đầu tiên là số đỉnh kề
@@ -113,88 +114,13 @@ void loadGraph(string fileName)
 					// tạo danh sách kề của đồ thị vô hướng
 					undirected_adjacencyList[v].push_back({ dest, weight });
 					undirected_adjacencyList[dest].push_back({ v, weight });
-				}
-			}
 
-			// di chuyển đến phần tử tiếp theo
-			i++;
-		}
-		// di chuyển đến đỉnh tiếp theo
-		v++;
-	}
-
-	// Close the file
-	inputFile.close();
-}
-
-
-/// <summary>
-/// tạo danh sách các cạnh có trọng số từ file txt
-/// </summary>
-/// <param name="fileName"></param>
-void loadEdges(string fileName)
-{
-	// reset cấu trúc dữ liệu graph
-	resetGraph();
-
-	// Open the file
-	ifstream inputFile(fileName);
-
-	// Check if the file is opened successfully
-	if (!inputFile.is_open())
-	{
-		cerr << "Error opening file: " << fileName << endl;
-		return; // Return an error code
-	}
-
-	// Read and print the contents of the file
-	string line;
-
-	// đọc số đỉnh
-	getline(inputFile, line);
-	n = stoi(line);
-
-	// Use while loop to check the getline() function condition.
-	int v = 0; // index cho từng đỉnh của vector adj
-	while (getline(inputFile, line))
-	{
-		// ss is an object of stringstream that references the S string.  
-		stringstream ss(line);
-		string word;
-
-		// index cho từng phần tử của mỗi dòng
-		int i = 0;
-		int dest, weight;
-		edge e;
-		while (ss >> word) // Extract word from the stream.
-		{
-			// phần tử đầu tiên là số đỉnh kề
-			if (i == 0)
-			{
-			}
-			else
-			{
-				// phần tử lẻ là đỉnh kề
-				if (i % 2 == 1)
-				{
-					dest = stoi(word);
-				}
-				if (i % 2 == 0)
-				{
-					// phần tử chẵn là trọng số
-					weight = stoi(word);
 
 					if (v < dest)
 					{
 						// đưa vào danh sách edges
 						e = { v, dest, weight };
 						edges.push_back(e);
-
-						// đưa vào danh sách cạnh vector pair
-						adjacencyList[v].push_back({ dest, weight });
-						adjacencyList[dest].push_back({ v, weight });
-
-						m++;
 					}
 				}
 			}
