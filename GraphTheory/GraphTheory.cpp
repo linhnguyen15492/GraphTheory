@@ -15,26 +15,7 @@ int main()
 
 	yeuCau2();
 
-	//loadGraph(yeuCau2_1);
-	//printGraph(adjacencyList, n);
-	//printGraph(r_adjacencyList, n);
-	//printGraph(adjacencyMatrix, n);
-	//printGraph(undirected_adjacencyList, n);
-	//printGraph(adj, n);
-	//printDegree(degree, n);
-
-	//bool a = isUndirectedGraph(adjacencyMatrix, n);
-	//cout << "Is undirected graph: " << a << endl;
-
-	//int c = connectedComponents(adjacencyList, n);
-	//cout << "So thanh phan lien thong: " << c << endl;
-
-	//stronglyConnectedComponents(adjacencyList, r_adjacencyList, n);
-
 	yeuCau3();
-
-
-	//printGraph(adj, n);
 
 	yeuCau5();
 
