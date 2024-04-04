@@ -154,6 +154,29 @@ int connectedComponents(vector<pair<int, int>> adj[], int n)
 
 #pragma endregion
 
+#pragma region yêu cầu 1
+
+void isWindmillGraph_Wd3n(int adjMatrix[][V])
+{
+	/*
+	In the mathematical field of graph theory, the windmill graph Wd(k,n) is an undirected graph constructed for k ≥ 2 and n ≥ 2 by joining n copies of the complete graph Kk
+	at a shared universal vertex. That is, it is a 1-clique-sum of these complete graphs.
+
+	It has n(k – 1) + 1 vertices and nk(k − 1)/2 edges,[2] girth 3 (if k > 2), radius 1 and diameter 2.
+
+	B1: Giả sử đồ thị đã cho là Wd(3,n) thì số đỉnh của đồ thị là n*(3-1)+1 = 2n+1, số cạnh là n*3*(3 − 1)/2 = 3n,
+
+	B2: tính số đỉnh và số cạnh của đồ thị đã cho, đặt là x và y
+
+	B3: Do đây là đồ thị Wd(3,n) nên 2n+1 = x và 3n = y, không xác định được n nguyên dương => kết luận đây không thể là đồ thị windmill Wd(3,n)
+
+	*/
+
+
+
+}
+
+#pragma endregion
 
 #pragma region yêu cầu 2
 
