@@ -85,15 +85,5 @@ int main()
 		}
 	} while (choice != 6);
 
-	//yeuCau1();
-
-	//yeuCau2();
-
-	//yeuCau3();
-
-	//yeuCau4();
-
-	//yeuCau5();
-
 	return 0;
 }
