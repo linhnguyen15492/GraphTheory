@@ -11,11 +11,11 @@ using namespace std;
 int welcome()
 {
 	cout << "Do an Ly thuyet do thi - HK2/2023-2024 - Nhom DA-01" << endl;
-	cout << "1. Yeu cau 1: Kiem tra do thi co phai la do thi vo huong hay khong?" << endl;
-	cout << "2. Yeu cau 2: Kiem tra do thi co phai la do thi vo huong co huong hay khong?" << endl;
-	cout << "3. Yeu cau 3: Kiem tra do thi co phai la do thi co huong hay khong?" << endl;
-	cout << "4. Yeu cau 4: Kiem tra do thi co phai la do thi vo huong co trong so hay khong?" << endl;
-	cout << "5. Yeu cau 5: Kiem tra do thi co phai la do thi co huong co trong so hay khong?" << endl;
+	cout << "1. Yeu cau 1: Nhan dien mot so dang do thi dac biet" << endl;
+	cout << "2. Yeu cau 2: Xac dinh thanh phan lien thong manh" << endl;
+	cout << "3. Yeu cau 3: Tim cay khung lon nhat" << endl;
+	cout << "4. Yeu cau 4: Tim duong di ngan nhat bang thuat toan Floyd Warshall" << endl;
+	cout << "5. Yeu cau 5: Tim chu trinh hoac duong di Euler" << endl;
 	cout << "6. Thoat chuong trinh" << endl;
 
 	string choice;
@@ -39,6 +39,7 @@ int welcome()
 			else
 			{
 				cout << "Yeu cau hop le!" << endl;
+				cout << "--------------------------------" << endl;
 				return v;
 			}
 		}
