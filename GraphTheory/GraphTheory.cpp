@@ -31,7 +31,6 @@ int welcome()
 			cout << "Ban da chon: " << v << endl;
 
 			flag = v < 1 || v > 6;
-			//cout << "flag: " << flag << endl;
 			if (flag)
 			{
 				cout << "Yeu cau khong hop le!" << endl;
