@@ -16,7 +16,6 @@ void yeuCau1()
 
 	printGraph(adjacencyMatrix, n);
 
-
 	cout << endl;
 }
 

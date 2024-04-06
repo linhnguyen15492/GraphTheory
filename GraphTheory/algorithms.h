@@ -65,6 +65,11 @@ void reverseDfs(int u, vector<pair<int, int>> r_adjacencyList[])
 }
 
 
+void dfs(int src, int dest)
+{
+
+}
+
 /// <summary>
 /// thuật toán bfs để duyệt đồ thị
 /// </summary>
@@ -162,6 +167,20 @@ bool isLoopEdges(int adjMatrix[][V], int n)
 
 bool isMultiEdges(int adjMatrix[][V], int n)
 {
+	return true;
+}
+
+
+bool isPositiveWeight(int degrees[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (degrees[i] < 0)
+		{
+			return false;
+		}
+	}
+
 	return true;
 }
 
@@ -446,16 +465,34 @@ void floydWarshall(int dist[][V])
 	vertices in set {0, 1, 2, .. k-1} as intermediate vertices.
 	----> After the end of an iteration, vertex no. k is added to the set of	intermediate vertices and the set becomes {0, 1, 2, ..	k} */
 	for (k = 0; k < n; k++) {
+
 		// Pick all vertices as source one by one
 		for (i = 0; i < n; i++) {
-			// Pick all vertices as destination for the
-			// above picked source
-			for (j = 0; j < n; j++) {
-				// If vertex k is on the shortest path from
-				// i to j, then update the value of
-				// dist[i][j]
+
+
+			// Pick all vertices as destination for the above picked source
+			for (j = 0; j < n; j++)
+			{
+				//cout << "dinh j " << j << endl;
+
+				// If vertex k is on the shortest path from i to j, then update the value of dist[i][j]
 				if (dist[i][j] > (dist[i][k] + dist[k][j]) && (dist[k][j] != INF && dist[i][k] != INF))
+				{
+
 					dist[i][j] = dist[i][k] + dist[k][j];
+
+					// lấy đường đi hiện tại từ i đến k và từ k đến j
+					for (int e : path[i][k])
+					{
+						path[i][j].push_back(e);
+					}
+					for (int e : path[k][j])
+					{
+						path[i][j].push_back(e);
+					}
+					path[i][j].push_back(k);
+				}
+
 			}
 		}
 	}
@@ -467,17 +504,42 @@ void floydWarshall(int dist[][V])
 /* A utility function to print solution */
 void printSolution(int dist[][V])
 {
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			if (dist[i][j] == INF)
-				cout << "INF"
-				<< " ";
+	//for (int i = 0; i < n; i++) {
+	//	for (int j = 0; j < n; j++) {
+	//		if (dist[i][j] == INF)
+	//			cout << "INF"
+	//			<< " ";
+	//		else
+	//			cout << dist[i][j] << "   ";
+	//	}
+	//	cout << endl;
+	//}
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Duong di xuat phat tu " << i << ":" << endl;
+		for (int j = 0; j < n; j++)
+		{
+			if (i == j)
+			{
+				continue;
+			}
 			else
-				cout << dist[i][j] << "   ";
+			{
+				cout << i << " -> ";
+				for (int e : path[i][j])
+				{
+					cout << e << " -> ";
+				}
+				cout << j << ": " << dist[i][j];
+				cout << endl;
+			}
+
 		}
 		cout << endl;
 	}
 }
+
 
 
 void transformGraph(int adjacencyMatrix[][V])
@@ -524,7 +586,7 @@ bool isEulerPath(int degree[], int n)
 
 int getDegree(int u)
 {
-	return degree[u];
+	return degrees[u];
 }
 
 bool isEulerCircuit(int degree[], int n)

@@ -15,12 +15,16 @@ void yeuCau4()
 		return;
 	}
 
+	// print graph
 	printGraph(adjacencyMatrix, n);
-
 	transformGraph(adjacencyMatrix);
+	//printGraph(adjacencyMatrix, n);
 
-	printGraph(adjacencyMatrix, n);
+	// kiểm tra đồ thị có trọng số dương
+	string s = isPositiveWeight(degrees) ? "Do thi co trong so duong" : "Khong phai do thi co trong so duong";
+	cout << s << endl;
 
+	// tìm đường đi ngắn nhất bằng thuật toán Floyd Warshall
 	floydWarshall(adjacencyMatrix);
 
 	cout << endl;

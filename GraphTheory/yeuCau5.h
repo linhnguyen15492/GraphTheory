@@ -19,7 +19,7 @@ void yeuCau5()
 
 	// in ra đồ thị danh sách kề
 	printGraph(adj, n);
-	printDegree(degree, n);
+	printDegree(degrees, n);
 
 	// kiểm tra đồ thị vô hướng
 	string s = isUndirectedGraph(adjacencyMatrix, n) ? "Do thi vo huong" : "Do thi co huong";
@@ -38,7 +38,7 @@ void yeuCau5()
 	}
 
 	// kiểm tra đồ thị có chu trình hoặc đường đi euler 
-	bool eulerCircuit = isEulerCircuit(degree, n);
+	bool eulerCircuit = isEulerCircuit(degrees, n);
 	bool eulerPath = false;
 
 	if (eulerCircuit)
@@ -47,7 +47,7 @@ void yeuCau5()
 	}
 	else
 	{
-		eulerPath = isEulerPath(degree, n);
+		eulerPath = isEulerPath(degrees, n);
 
 		if (eulerPath)
 			cout << "Do thi nua Euler" << endl;
@@ -65,7 +65,7 @@ void yeuCau5()
 		int deg = getDegree(source);
 		if (eulerPath && deg % 2 == 0)
 		{
-			cout << "euler path " << eulerPath << endl;
+			//cout << "euler path " << eulerPath << endl;
 			cout << "Khong co loi giai" << endl;
 		}
 		else

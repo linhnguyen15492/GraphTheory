@@ -34,9 +34,10 @@ vector<edge> edges; // danh sách cạnh có trọng số
 
 int n, m; // số đỉnh, số cạnh
 int parent[V], sz[V]; // parent array
+vector<int> path[V][V]; // đường đi
 
 set<int> adj[V];
-int degree[V]; // bậc của đỉnh
+int degrees[V]; // bậc của đỉnh
 
 // reset graph
 void resetGraph();
@@ -86,7 +87,7 @@ int loadGraph(string fileName)
 			if (i == 0)
 			{
 				int deg = stoi(word);
-				degree[v] = deg;
+				degrees[v] = deg;
 			}
 			else
 			{
@@ -225,10 +226,13 @@ void resetGraph()
 		r_adjacencyList[i].clear();
 		undirected_adjacencyList[i].clear();
 		adj[i].clear();
+		//path[i].clear();
 	}
 
 	fill_n(adjacencyMatrix[0], V * V, 0);
-	fill_n(degree, V, 0);
+	fill_n(degrees, V, 0);
+	fill_n(parent, V, 0);
+	fill_n(sz, V, 0);
 
 	edges.clear();
 }
