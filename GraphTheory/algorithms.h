@@ -64,6 +64,7 @@ void reverseDfs(int u, vector<pair<int, int>> r_adjacencyList[])
 	}
 }
 
+
 /// <summary>
 /// thuật toán bfs để duyệt đồ thị
 /// </summary>
@@ -108,6 +109,7 @@ void bfs(int u, vector<pair<int, int>> adjacencyList[])
 		}
 	}
 }
+
 
 /// <summary>
 /// xác định đồ thị có phải là đồ thị vô hướng hay không
@@ -157,6 +159,7 @@ bool isLoopEdges(int adjMatrix[][V], int n)
 	return true;
 }
 
+
 bool isMultiEdges(int adjMatrix[][V], int n)
 {
 	return true;
@@ -164,6 +167,7 @@ bool isMultiEdges(int adjMatrix[][V], int n)
 
 
 #pragma endregion
+
 
 #pragma region yêu cầu 1
 
@@ -216,6 +220,7 @@ void isBarbellGraph(int adjMatrix[][V], int n)
 }
 
 #pragma endregion
+
 
 #pragma region yêu cầu 2
 
@@ -515,6 +520,11 @@ bool isEulerPath(int degree[], int n)
 	}
 
 	return false;
+}
+
+int getDegree(int u)
+{
+	return degree[u];
 }
 
 bool isEulerCircuit(int degree[], int n)

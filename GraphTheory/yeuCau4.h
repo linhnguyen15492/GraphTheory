@@ -8,7 +8,12 @@ void yeuCau4()
 	string filename = "yeuCau4.txt";
 
 	// load graph
-	loadGraph(filename);
+	if (loadGraph(filename) == 1)
+	{
+		cout << "Loi khi load file " << filename << endl;
+		cout << endl;
+		return;
+	}
 
 	printGraph(adjacencyMatrix, n);
 

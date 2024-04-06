@@ -46,7 +46,7 @@ void resetGraph();
 
 #pragma region load graphs từ file txt
 
-void loadGraph(string fileName)
+int loadGraph(string fileName)
 {
 	// reset cấu trúc dữ liệu graph
 	resetGraph();
@@ -58,7 +58,7 @@ void loadGraph(string fileName)
 	if (!inputFile.is_open())
 	{
 		cerr << "Error opening file: " << fileName << endl;
-		return; // Return an error code
+		return 1; // Return an error code
 	}
 
 	// Read and print the contents of the file
@@ -135,6 +135,8 @@ void loadGraph(string fileName)
 
 	// Close the file
 	inputFile.close();
+
+	return 0;
 }
 
 

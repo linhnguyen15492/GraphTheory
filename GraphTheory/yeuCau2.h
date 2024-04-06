@@ -6,12 +6,17 @@ void yeuCau2()
 {
 	cout << "Yeu cau 2: Xac dinh thanh phan lien thong manh" << endl;
 
-	for (string v : inputList)
+	for (string filename : inputList)
 	{
-		cout << "Do thi file " << v << ":\n";
+		cout << "Do thi file " << filename << ":\n";
 
 		// load graph
-		loadGraph(v);
+		if (loadGraph(filename) == 1)
+		{
+			cout << "Loi khi load file " << filename << endl;
+			cout << endl;
+			return;
+		}
 
 		// in ra ma trận kề
 		printGraph(adjacencyList, n);
@@ -22,7 +27,6 @@ void yeuCau2()
 		// kiểm tra đồ thị có hướng
 		string s = isUndirectedGraph(adjacencyMatrix, n) ? "Do thi vo huong" : "Do thi co huong";
 		cout << s << endl;
-
 
 		// kiểm tra đồ thị không có cạnh bội và không có cạnh khuyên
 
