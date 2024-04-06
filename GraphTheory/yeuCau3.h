@@ -4,7 +4,7 @@ void yeuCau3()
 {
 	cout << "Yeu cau 3: Tim cay khung lon nhat" << endl;
 
-	string filename = "yeuCassu3.txt";
+	string filename = "yeuCau3.txt";
 
 	// load graph
 	if (loadGraph(filename) == 1)
