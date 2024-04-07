@@ -30,8 +30,7 @@ void yeuCau1()
 	cout << "Do thi Barbell: " << s2 << endl;
 
 	// đồ thị k-phan
-
-	cout << "Do thi k-phan: " << endl;
+	cout << "Do thi k-phan: ";
 	kParite();
 
 	cout << endl;

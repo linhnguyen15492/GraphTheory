@@ -121,9 +121,7 @@ void bfs(int u)
 	queue<int> q;
 	q.push(u);
 
-	int k = 0;
-
-	color[u] = k; // 0 = red, 1 = blue
+	color[u] = 0; // 0 = red, 1 = blue
 	while (!q.empty())
 	{
 		int v = q.front();
@@ -134,21 +132,14 @@ void bfs(int u)
 
 			if (color[x] == -1)
 			{
-				k++;
-				color[x] = k;
+				color[x] = color[v] + 1;
 				q.push(x);
 			}
-			else if (color[x] == color[v] && color[x] != -1)
+			else if (color[x] == color[v] && color[x] != 0)
 			{
-				k++;
-				color[x] = k;
+				color[x] = color[v] + 1;
 			}
 		}
-	}
-
-	for (int i = 0; i < n; i++)
-	{
-		cout << "Dinh " << i << " co mau " << color[i] << endl;
 	}
 }
 
@@ -221,6 +212,25 @@ bool isPositiveWeight(int degrees[])
 }
 
 
+
+// Function to find the maximum of array
+int largest(int arr[], int n)
+{
+	int i;
+
+	// Initialize maximum element
+	int max = arr[0];
+
+	// Traverse array elements
+	// from second and compare
+	// every element with current max
+	for (i = 1; i < n; i++)
+		if (arr[i] > max)
+			max = arr[i];
+
+	return max;
+}
+
 #pragma endregion
 
 
@@ -261,7 +271,6 @@ int isWindmillGraph_Wd3n()
 
 	return 0;
 }
-
 
 int isBarbellGraph()
 {
@@ -315,10 +324,26 @@ int isBarbellGraph()
 void kParite() {
 	bfs(0);
 
-	for (int i = 0; i < n; i++)
-	{
-		cout << "Dinh " << i << " co mau " << color[i] << endl;
+	//for (int i = 0; i < n; i++)
+	//{
+	//	cout << "Dinh " << i << " co mau " << color[i] << endl;
+	//}
+
+	int count = largest(color, n);
+	cout << count + 1 << "-partite ";
+
+	for (int i = 0; i <= count; i++) {
+		//cout << "Mau " << i << ": ";
+		for (int j = 0; j < n; j++) {
+			if (color[j] == i)
+			{
+				cout << j << " ";
+			}
+		}
+		cout << " ";
 	}
+
+	cout << endl;
 }
 
 #pragma endregion
