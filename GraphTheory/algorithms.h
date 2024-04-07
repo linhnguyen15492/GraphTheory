@@ -114,13 +114,16 @@ void bfs(int u, vector<pair<int, int>> adjacencyList[])
 }
 
 
-bool bfs(int u)
+void bfs(int u)
 {
 	memset(color, -1, sizeof(color));
 
 	queue<int> q;
 	q.push(u);
-	color[u] = 0; // 0 = red, 1 = blue
+
+	int k = 0;
+
+	color[u] = k; // 0 = red, 1 = blue
 	while (!q.empty())
 	{
 		int v = q.front();
@@ -131,14 +134,21 @@ bool bfs(int u)
 
 			if (color[x] == -1)
 			{
-				color[x] = 1 - color[v];
+				k++;
+				color[x] = k;
 				q.push(x);
 			}
-			else if (color[x] == color[v])
+			else if (color[x] == color[v] && color[x] != -1)
 			{
-				return false;
+				k++;
+				color[x] = k;
 			}
 		}
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Dinh " << i << " co mau " << color[i] << endl;
 	}
 }
 
@@ -302,7 +312,14 @@ int isBarbellGraph()
 
 }
 
+void kParite() {
+	bfs(0);
 
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Dinh " << i << " co mau " << color[i] << endl;
+	}
+}
 
 #pragma endregion
 
