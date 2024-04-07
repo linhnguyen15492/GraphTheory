@@ -31,6 +31,9 @@ void yeuCau1()
 
 	// đồ thị k-phan
 
+	cout << "Do thi k-phan: " << endl;
+
+
 	cout << endl;
 }
 
