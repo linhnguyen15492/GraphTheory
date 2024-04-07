@@ -185,7 +185,7 @@ bool isPositiveWeight(int degrees[])
 
 #pragma region yêu cầu 1
 
-int isWindmillGraph_Wd3n(int adjMatrix[][V])
+int isWindmillGraph_Wd3n()
 {
 	/*
 	In the mathematical field of graph theory, the windmill graph Wd(k,n) is an undirected graph constructed for k ≥ 2 and n ≥ 2 by joining n copies of the complete graph Kk
@@ -207,8 +207,8 @@ int isWindmillGraph_Wd3n(int adjMatrix[][V])
 	//cout << "So dinh: " << x << endl;
 	//cout << "So canh: " << y << endl;
 
-	float n1 = (x - 1) / 2.0;
-	float n2 = y / 3.0;
+	double n1 = (x - 1) / 2.0;
+	double n2 = y / 3.0;
 
 	//cout << "n1: " << n1 << endl;
 	//cout << "n2: " << n2 << endl;
@@ -222,7 +222,7 @@ int isWindmillGraph_Wd3n(int adjMatrix[][V])
 }
 
 
-void isBarbellGraph(int adjMatrix[][V], int n)
+int isBarbellGraph()
 {
 	/*
 	A barbell graph is a graph consisting of a path graph and a cycle graph that are connected by a single edge.
@@ -243,9 +243,31 @@ void isBarbellGraph(int adjMatrix[][V], int n)
 	B2: nếu số cạnh khác với n*(n-1) + 1 => không là đồ thị Barbell
 	*/
 
+	int x = n; // số đỉnh đồ thị đã cho
+	int y = edges.size(); // số cạnh đồ thị đã cho
 
+	//cout << "So dinh: " << x << endl;
+	//cout << "So canh: " << y << endl;
 
+	// nếu số đỉnh lẻ thì không phải là đồ thị Barbell
+	if (x % 2 != 0)
+	{
+		return 0;
+	}
 
+	// nếu số cạnh khác với n*(n-1) + 1 thì không phải là đồ thị Barbell
+	int deg = n / 2;
+	int e = deg * (deg - 1) + 1;
+
+	//cout << "bac barbell du tinh " << deg << endl;
+	//cout << "so canh du tinh " << e << endl;
+
+	if (y == e)
+	{
+		return deg;
+	}
+
+	return 0;
 
 }
 
