@@ -65,11 +65,6 @@ void reverseDfs(int u, vector<pair<int, int>> r_adjacencyList[])
 }
 
 
-void dfs(int src, int dest)
-{
-
-}
-
 /// <summary>
 /// thuật toán bfs để duyệt đồ thị
 /// </summary>
@@ -190,7 +185,7 @@ bool isPositiveWeight(int degrees[])
 
 #pragma region yêu cầu 1
 
-void isWindmillGraph_Wd3n(int adjMatrix[][V])
+int isWindmillGraph_Wd3n(int adjMatrix[][V])
 {
 	/*
 	In the mathematical field of graph theory, the windmill graph Wd(k,n) is an undirected graph constructed for k ≥ 2 and n ≥ 2 by joining n copies of the complete graph Kk
@@ -206,8 +201,24 @@ void isWindmillGraph_Wd3n(int adjMatrix[][V])
 
 	*/
 
+	int x = n; // số đỉnh đồ thị đã cho
+	int y = edges.size(); // số cạnh đồ thị đã cho
 
+	//cout << "So dinh: " << x << endl;
+	//cout << "So canh: " << y << endl;
 
+	float n1 = (x - 1) / 2.0;
+	float n2 = y / 3.0;
+
+	//cout << "n1: " << n1 << endl;
+	//cout << "n2: " << n2 << endl;
+
+	if (n1 == n2)
+	{
+		return int(n1);
+	}
+
+	return 0;
 }
 
 
