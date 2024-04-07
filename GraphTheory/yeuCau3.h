@@ -16,9 +16,9 @@ void yeuCau3()
 
 	// in danh sách kề
 	printGraph(adjacencyList, n);
-	printGraph(adjacencyMatrix, n);
+	//printGraph(adjacencyMatrix, n);
 	//printGraph(undirected_adjacencyList, n);
-	printGraph(edges);
+	//printGraph(edges);
 
 	// kiểm tra đồ thị vô hướng 
 	string s = isUndirectedGraph(adjacencyMatrix, n) ? "Day la do thi vo huong" : "Day la do thi co huong";
