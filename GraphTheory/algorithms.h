@@ -5,6 +5,9 @@ stack<int> st;
 // visited array
 bool visited[V];
 
+// mảng đánh dấu màu của các đỉnh
+int color[V];
+
 #pragma region hàm dùng chung
 
 
@@ -110,6 +113,34 @@ void bfs(int u, vector<pair<int, int>> adjacencyList[])
 	}
 }
 
+
+bool bfs(int u)
+{
+	memset(color, -1, sizeof(color));
+
+	queue<int> q;
+	q.push(u);
+	color[u] = 0; // 0 = red, 1 = blue
+	while (!q.empty())
+	{
+		int v = q.front();
+		q.pop();
+		for (pair<int, int> p : adjacencyList[v])
+		{
+			int x = p.first;
+
+			if (color[x] == -1)
+			{
+				color[x] = 1 - color[v];
+				q.push(x);
+			}
+			else if (color[x] == color[v])
+			{
+				return false;
+			}
+		}
+	}
+}
 
 /// <summary>
 /// xác định đồ thị có phải là đồ thị vô hướng hay không
@@ -270,6 +301,8 @@ int isBarbellGraph()
 	return 0;
 
 }
+
+
 
 #pragma endregion
 
