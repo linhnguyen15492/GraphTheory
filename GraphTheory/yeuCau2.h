@@ -29,7 +29,8 @@ void yeuCau2()
 		cout << s << endl;
 
 		// kiểm tra đồ thị không có cạnh bội và không có cạnh khuyên
-
+		string s1 = isLoopEdges(adjacencyMatrix, n) ? "Do thi co canh khuyen" : "Do thi khong co canh khuyen";
+		cout << s1 << endl;
 
 
 		// kiểm tra đồ thị có liên thông không

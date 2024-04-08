@@ -188,7 +188,14 @@ int connectedComponents(vector<pair<int, int>> adj[], int n)
 
 bool isLoopEdges(int adjMatrix[][V], int n)
 {
-	return true;
+	for (int i = 0; i < n; i++)
+	{
+		if (adjMatrix[i][i] != 0)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 
