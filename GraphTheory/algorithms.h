@@ -340,7 +340,7 @@ void kParite() {
 				cout << j << " ";
 			}
 		}
-		cout << " ";
+		cout << "  ";
 	}
 
 	cout << endl;
