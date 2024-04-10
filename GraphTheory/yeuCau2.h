@@ -57,7 +57,6 @@ void yeuCau2()
 			}
 		}
 
-
 		cout << endl;
 	}
 }
