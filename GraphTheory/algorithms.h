@@ -1,4 +1,6 @@
-﻿
+﻿#include <cstring>
+#include <algorithm>  
+
 // cấu trúc stack để giải thuật toán Kosaraju
 stack<int> st;
 

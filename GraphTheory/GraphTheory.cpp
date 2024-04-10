@@ -47,6 +47,8 @@ int welcome()
 			cout << "Yeu cau khong hop le!" << endl;
 		}
 	} while (flag);
+
+	return 0;
 }
 
 
