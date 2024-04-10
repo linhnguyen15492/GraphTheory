@@ -1,5 +1,5 @@
 ﻿#include <cstring>
-#include <algorithm>  
+#include <algorithm>  // thư viện của C++ dùng để sử dụng hàm sort
 
 // cấu trúc stack để giải thuật toán Kosaraju
 stack<int> st;
