@@ -34,15 +34,19 @@ void yeuCau2()
 
 
 		// kiểm tra đồ thị có liên thông không
+		// kiểm tra xem danh sách kề phiên bản vô hướng có bao nhiêu thành phần liên thông
 		int i = connectedComponents(undirected_adjacencyList, n);
+		// nếu có trên 1 thành phần liên thông thì không liên thông
 		if (i > 1)
 		{
 			stronglyConnectedComponents(adjacencyList, r_adjacencyList, n);
 			cout << "Do thi khong lien thong" << endl;
 		}
-		else
+		else // ngược lại
 		{
+			// đếm số thành phần phiên bản danh sách kề có hướng
 			int j = connectedComponents(adjacencyList, n);
+			// nếu bằng 1 thì có thể là liên thông mạnh hoặc liên thông từng phần
 			if (j == 1)
 			{
 				// xác định thành phần liên thông mạnh
