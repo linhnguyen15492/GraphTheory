@@ -226,7 +226,6 @@ void resetGraph()
 		r_adjacencyList[i].clear();
 		undirected_adjacencyList[i].clear();
 		adj[i].clear();
-		//path[i].clear();
 	}
 
 	fill_n(adjacencyMatrix[0], V * V, 0);
