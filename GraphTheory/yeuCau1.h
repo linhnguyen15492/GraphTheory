@@ -6,7 +6,7 @@ void yeuCau1()
 {
 	cout << "Yeu cau 1: Nhan dien mot so dang do thi dac biet" << endl;
 
-	string filename = "./yeuCau1_2.txt";
+	string filename = "yeuCau1_2.txt";
 
 	if (loadGraph(filename) == 1)
 	{
